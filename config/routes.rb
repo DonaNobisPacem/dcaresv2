@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  resources :project_images
   root 'static_pages#home'
+
+  get '/admin_panel' => 'static_pages#admin_panel'
 
   resources :projects
   resources :users
+  resources :universities
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

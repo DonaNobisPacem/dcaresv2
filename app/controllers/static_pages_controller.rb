@@ -1,7 +1,8 @@
 class StaticPagesController < ApplicationController
-
 	def home
-		@users = User.all
 	end
 
+	def admin_panel
+		@users = User.all
+	end
 end

@@ -58,7 +58,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 
 # File upload + handling
-gem 'carrierwave'
+gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 
 # Pagination

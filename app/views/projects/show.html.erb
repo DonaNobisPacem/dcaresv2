@@ -1,4 +1,110 @@
-<p id="notice"><%= notice %></p>
+<div class="panel panel-success">
+	<div class="panel-heading text-center">
+		<h3><%= @project.project_name %></h3>
+		<b><%= @project.project_code %> - <%= @university.university_name %></b>
+	</div>
+	<div class="panel-body">
+		<p id="notice"><%= notice %></p>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<b><%= icon('info-circle')%>  General Information</b>
+			</div>
+			<div class="panel-body">
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+				<div class="row">
+					<div class="col-xs-6">
+						<b>Description:</b><br>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.description) %></div>
+					</div>
+					<div class="col-xs-6">
+						<b>Expected Outcome:</b><br>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.expected_outcome) %></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="progress">
+						    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= @project.percent_accomplishment %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.percent_accomplishment %>%">
+						        <span><%= @project.percent_accomplishment %>% Complete since <%= @project.percent_accomplishment_by.strftime("%d %B %Y") if @project.percent_accomplishment_by %></span>
+						    </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<b>Remarks:</b><br>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.remarks) %></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('suitcase')%>  Bidding Details</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<b>Contractor: </b><%= @project.bidding_contractor %><br>
+					<b>Number of Biddings: </b><%= @project.bidding_number %><br>
+					<b>Date of Award: </b><%= @project.bidding_award.strftime("%d %B %Y") if @project.bidding_award %><br>
+					<b>Date to Proceed: </b><%= @project.bidding_proceed.strftime("%d %B %Y") if @project.bidding_proceed %>
+				</div>
+			</div>
+		</div>
+		 
+		 <div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('money')%>  Financial Details</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					 <b>Source of funds: </b><%= @project.financial_source %><br>
+					 <b>Budget: </b><%= @project.financial_budget %><br>
+					 <b>Contract Price: </b><%= @project.financial_contract_price %><br>
+					 <b>Actual Cost: </b><%= @project.financial_actual_cost %>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('clock-o')%>  Timeline</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					 <b>Target Start Date: </b><%= @project.timeline_target_start.strftime("%d %B %Y") if @project.timeline_target_start %><br>
+					 <b>Target Completion Date: </b><%= @project.timeline_target_end.strftime("%d %B %Y") if @project.timeline_target_end %><br>
+					 <b>Actual Start Date: </b><%= @project.timeline_actual_start.strftime("%d %B %Y") if @project.timeline_actual_start %><br>
+					 <b>Actual Completion Date: </b><%= @project.timeline_actual_end.strftime("%d %B %Y") if @project.timeline_actual_end %>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('clock-o')%>  Gallery</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<% @project_images.each_with_index do |image, index| %>
+  						<% if index % 3 == 0 %>
+  							<div class="row">
+  							</div>
+  						<% end %>
+						<div class="col-xs-4">
+							<%= link_to image_tag(image.image_url(:thumbnail)), image %><br>
+  						</div>
+					<% end %>
+				</div>
+				<%= will_paginate @project_images, renderer: BootstrapPagination::Rails, :class => "pull-right" %>
+			</div>
+		</div>
+	 	<div class="pull-right">
+			<%= link_to 'Edit', edit_project_path(@project) %> |
+			<%= link_to 'Back', projects_path %>
+		</div>
+ 	</div>
+ </div>

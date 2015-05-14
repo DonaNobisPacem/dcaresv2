@@ -7,22 +7,42 @@
 		    <div class="collapse navbar-collapse">
 		    	<ul class="nav navbar-nav">
 		    		<li class="dropdown">
-			     		<%= link_to 'Universities <i class="fa fa-caret-down"></i>'.html_safe, root_path, :id => 'campusdrop', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
+			     		<%= link_to '<i class="fa fa-university"></i> Universities <i class="fa fa-caret-down"></i>'.html_safe, universities_path, :id => 'campusdrop', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
 			     		<ul class="dropdown-menu">
+			     			<% University.all.each do |university| %>
 							<li>
-								<%= link_to root_path do %>
-								  	<i class="fa fa-university"></i> View Universities
+								<%= link_to university do %>
+								  	<%= icon('university') %> <%= university.university_name %>
 								<% end %>
 							</li>
+							<% end %>
 							<% if current_user.admin %>
 								<li>
-									<%= link_to root_path do %>
+									<%= link_to new_university_path do %>
 									<i class="fa fa-plus"></i> Add University
 									<% end %>
 								</li>
 							<% end %>
 						</ul>
 					</li>
+					<li class="dropdown">
+			     		<%= link_to '<i class="fa fa-building"></i> Projects <i class="fa fa-caret-down"></i>'.html_safe, projects_path, :id => 'projectdrop', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
+			     		<ul class="dropdown-menu">
+							<li>
+								<%= link_to projects_path do %>
+								  	<i class="fa fa-building"></i> View Projects
+								<% end %>
+							</li>
+							<li>
+								<%= link_to new_project_path do %>
+								<i class="fa fa-plus"></i> Add New Project
+								<% end %>
+							</li>
+						</ul>
+					</li>
+					<% if current_user.admin %>
+						<li> <%=link_to '<i class="fa fa-user-plus"></i> Admin Panel'.html_safe, admin_panel_path %> </li>
+					<% end %>
 				</ul>
 	      		<ul class="nav navbar-nav navbar-right">
 	      			<li>

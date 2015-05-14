@@ -1,0 +1,7 @@
+<div>
+	<% @universities.each do |university| %>
+		<div class="well">
+			<%= link_to university.university_name, university %>
+		</div>
+	<% end %>
+</div>

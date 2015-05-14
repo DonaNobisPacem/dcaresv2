@@ -1,0 +1,18 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Email</th>
+			<th>Is Admin?</th>
+			<th>Is Approved?</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<th><%= link_to user.email, edit_user_path(user) %></th>
+				<th><%= user.admin %></th>
+				<th><%= user.approved %></th>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

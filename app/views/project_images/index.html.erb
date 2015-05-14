@@ -1,0 +1,23 @@
+<table class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Image</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_images.each do |project_image| %>
+      <tr>
+        <td><%= project_image.project_id %></td>
+        <td><%= project_image.image %></td>
+        <td><%= project_image.description %></td>
+        <td><%= link_to 'Show', project_image %></td>
+        <td><%= link_to 'Edit', edit_project_image_path(project_image) %></td>
+        <td><%= link_to 'Destroy', project_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

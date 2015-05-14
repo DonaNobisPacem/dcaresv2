@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /projects
   # GET /projects.json
   def index
@@ -10,15 +10,19 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
+    @university = University.find( @project.university_id )
+    @project_images = @project.project_images.paginate(:page => params[:page], :per_page => 9)
   end
 
   # GET /projects/new
   def new
     @project = Project.new
+    @project_image = @project.project_images.build
   end
 
   # GET /projects/1/edit
   def edit
+    @project_image = @project.project_images.build unless @project.project_images.count > 0
   end
 
   # POST /projects
@@ -28,6 +32,11 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        if params[:project_images]
+          params[:project_images].each do |a|
+            @project_image = @project.project_images.create!(:image => a, :project_id => @project.id)
+          end
+        end
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -42,6 +51,11 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
+        if params[:project_images]
+          params[:project_images].each do |a|
+            @project_image = @project.project_images.create!(:image => a, :project_id => @project.id)
+          end
+        end
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else
@@ -69,6 +83,8 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params[:project]
+      params.require(:project).permit(:university_id, :project_name, :project_code, :description, :expected_outcome, :percent_accomplishment, :percent_accomplishment_by, :remarks, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, project_images_attributes: [ :id, :project_id, :image, :description, :_destroy])
     end
 end
+
+
