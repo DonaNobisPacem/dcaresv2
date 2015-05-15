@@ -1,12 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to image_tag(@project_image.image_url(:view)), @project_image.image_url, :target => "_blank" %>
+<div class="well col-xs-12 text-center">
+	<%= link_to image_tag(@project_image.image_url(:view)), @project_image.image_url, :target => "_blank" %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project_image.description %>
-</p>
+	<div class="pull-left">
+		<p>
+		  <strong>Description:</strong>
+		  <%= @project_image.description %>
+		</p>
+	</div>
+	<br><br>
+	<div class="pull-right">	
+		<%= link_to 'Edit', edit_project_project_image_path(@project_image.project, @project_image) %> |
+		<%= link_to "Remove", project_project_image_path( @project_image.project, @project_image), data: { confirm: 'Delete this image?' }, :method => :delete %> |
+		<%= link_to 'Back', @project_image.project %>
+	</div>
+</div>
 
-<%= link_to 'Edit', edit_project_image_path(@project_image) %> |
-<%= link_to "Remove", @project_image, data: { confirm: 'Delete this image?' }, :method => :delete %> |
-<%= link_to 'Back', @project_image.project %>

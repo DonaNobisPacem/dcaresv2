@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
-  resources :project_images
   root 'static_pages#home'
 
   get '/admin_panel' => 'static_pages#admin_panel'
 
-  resources :projects
+  resources :projects do
+    resources :project_phases
+    resources :project_components
+    resources :project_images
+  end
   resources :users
   resources :universities
   devise_for :users

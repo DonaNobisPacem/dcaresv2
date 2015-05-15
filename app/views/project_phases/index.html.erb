@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Phases for <%= link_to @project.project_name, @project %></h1>
+
+<table class="table table-hover table-responsive">
+  <thead>
+    <tr>
+      <th>Phase Title</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @project_phases.each do |phase| %>
+      <tr>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
+        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path( @project, phase ), :class => "btn btn-small btn-info" %></td>    
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="text-center">
+  <%= will_paginate @project_phases, renderer: BootstrapPagination::Rails %>
+</div>
+
+<%= link_to '<i class="fa fa-plus"></i> Add new Project Phase'.html_safe, new_project_project_phase_path(@project), :class => "pull-right" %>

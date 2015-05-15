@@ -42,7 +42,7 @@ class ProjectImagesController < ApplicationController
   def update
     respond_to do |format|
       if @project_image.update(project_image_params)
-        format.html { redirect_to @project_image.project, notice: 'Project image was successfully updated.' }
+        format.html { redirect_to project_project_image_path( @project_image.project, @project_image ), notice: 'Project image was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_image }
       else
         format.html { render :edit }

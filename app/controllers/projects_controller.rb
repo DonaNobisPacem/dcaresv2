@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.paginate(:page => params[:page], :per_page => 30)
   end
 
   # GET /projects/1
@@ -12,6 +12,8 @@ class ProjectsController < ApplicationController
   def show
     @university = University.find( @project.university_id )
     @project_images = @project.project_images.paginate(:page => params[:page], :per_page => 9)
+    @project_components = @project.project_components.paginate(:page => params[:page], :per_page => 5)
+    @project_phases = @project.project_phases.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /projects/new

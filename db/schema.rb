@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514065629) do
+ActiveRecord::Schema.define(version: 20150515005739) do
+
+  create_table "project_components", force: :cascade do |t|
+    t.integer  "project_id",                limit: 4
+    t.string   "component_name",            limit: 255
+    t.text     "description",               limit: 65535
+    t.text     "expected_outcome",          limit: 65535
+    t.text     "remarks",                   limit: 65535
+    t.decimal  "percent_accomplishment",                  precision: 16, scale: 2
+    t.datetime "percent_accomplishment_by"
+    t.string   "bidding_contractor",        limit: 255
+    t.integer  "bidding_number",            limit: 4
+    t.datetime "bidding_award"
+    t.datetime "bidding_proceed"
+    t.decimal  "financial_budget",                        precision: 16, scale: 2
+    t.decimal  "financial_contract_price",                precision: 16, scale: 2
+    t.decimal  "financial_actual_cost",                   precision: 16, scale: 2
+    t.string   "financial_source",          limit: 255
+    t.datetime "timeline_target_start"
+    t.datetime "timeline_target_end"
+    t.datetime "timeline_actual_start"
+    t.datetime "timeline_actual_end"
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
+
+  add_index "project_components", ["project_id"], name: "index_project_components_on_project_id", using: :btree
 
   create_table "project_images", force: :cascade do |t|
     t.integer  "project_id",  limit: 4
@@ -20,6 +46,32 @@ ActiveRecord::Schema.define(version: 20150514065629) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  create_table "project_phases", force: :cascade do |t|
+    t.integer  "project_id",                limit: 4
+    t.string   "phase_name",                limit: 255
+    t.text     "description",               limit: 65535
+    t.text     "expected_outcome",          limit: 65535
+    t.text     "remarks",                   limit: 65535
+    t.decimal  "percent_accomplishment",                  precision: 16, scale: 2
+    t.datetime "percent_accomplishment_by"
+    t.string   "bidding_contractor",        limit: 255
+    t.integer  "bidding_number",            limit: 4
+    t.datetime "bidding_award"
+    t.datetime "bidding_proceed"
+    t.decimal  "financial_budget",                        precision: 16, scale: 2
+    t.decimal  "financial_contract_price",                precision: 16, scale: 2
+    t.decimal  "financial_actual_cost",                   precision: 16, scale: 2
+    t.string   "financial_source",          limit: 255
+    t.datetime "timeline_target_start"
+    t.datetime "timeline_target_end"
+    t.datetime "timeline_actual_start"
+    t.datetime "timeline_actual_end"
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
+
+  add_index "project_phases", ["project_id"], name: "index_project_phases_on_project_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "project_name",              limit: 255
@@ -76,5 +128,7 @@ ActiveRecord::Schema.define(version: 20150514065629) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "project_components", "projects"
+  add_foreign_key "project_phases", "projects"
   add_foreign_key "projects", "universities"
 end

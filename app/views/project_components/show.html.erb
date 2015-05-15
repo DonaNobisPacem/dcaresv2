@@ -1,0 +1,93 @@
+<div class="panel panel-success">
+	<div class="panel-heading text-center">
+		<h3><%= @project_component.component_name %></h3>
+		<b>Project Component of <%= link_to @project_component.project.project_name, project_path(@project_component.project) %></b>
+	</div>
+	<div class="panel-body">
+		<p id="notice"><%= notice %></p>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<b><%= icon('info-circle')%>  General Information</b>
+			</div>
+			<div class="panel-body">
+
+				<div class="row">
+					<div class="col-xs-6">
+						<b>Description:</b><br>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.description) %></div>
+					</div>
+					<div class="col-xs-6">
+						<b>Expected Outcome:</b><br>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.expected_outcome) %></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="progress">
+						    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= @project_component.percent_accomplishment %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project_component.percent_accomplishment %>%">
+						        <span><%= @project_component.percent_accomplishment %>% Complete since <%= @project_component.percent_accomplishment_by.strftime("%d %B %Y") if @project_component.percent_accomplishment_by %></span>
+						    </div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-xs-12">
+						<b>Remarks:</b><br>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.remarks) %></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('suitcase')%>  Bidding Details</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<b>Contractor: </b><%= @project_component.bidding_contractor %><br>
+					<b>Number of Biddings: </b><%= @project_component.bidding_number %><br>
+					<b>Date of Award: </b><%= @project_component.bidding_award.strftime("%d %B %Y") if @project_component.bidding_award %><br>
+					<b>Date to Proceed: </b><%= @project_component.bidding_proceed.strftime("%d %B %Y") if @project_component.bidding_proceed %>
+				</div>
+			</div>
+		</div>
+		 
+		 <div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('money')%>  Financial Details</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					 <b>Source of funds: </b><%= @project_component.financial_source %><br>
+					 <b>Budget: </b><%= @project_component.financial_budget %><br>
+					 <b>Contract Price: </b><%= @project_component.financial_contract_price %><br>
+					 <b>Actual Cost: </b><%= @project_component.financial_actual_cost %>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<b><%= icon('clock-o')%>  Timeline</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					 <b>Target Start Date: </b><%= @project_component.timeline_target_start.strftime("%d %B %Y") if @project_component.timeline_target_start %><br>
+					 <b>Target Completion Date: </b><%= @project_component.timeline_target_end.strftime("%d %B %Y") if @project_component.timeline_target_end %><br>
+					 <b>Actual Start Date: </b><%= @project_component.timeline_actual_start.strftime("%d %B %Y") if @project_component.timeline_actual_start %><br>
+					 <b>Actual Completion Date: </b><%= @project_component.timeline_actual_end.strftime("%d %B %Y") if @project_component.timeline_actual_end %>
+				</div>
+			</div>
+		</div>
+
+	 	<div class="pull-right">
+			<%= link_to 'Edit', edit_project_project_component_path(@project_component.project, @project_component) %> |
+			<%= link_to 'Destroy', project_project_component_path(@project_component.project, @project_component), method: :delete, data: { confirm: 'Are you sure?' } %> |
+			<%= link_to 'Back', project_path(@project_component.project) %>
+		</div>
+ 	</div>
+ </div>
+

@@ -41,7 +41,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-warning">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('suitcase')%>  Bidding Details</b>
 			</div>
@@ -55,7 +55,7 @@
 			</div>
 		</div>
 		 
-		 <div class="panel panel-warning">
+		 <div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('money')%>  Financial Details</b>
 			</div>
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 
-		<div class="panel panel-warning">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('clock-o')%>  Timeline</b>
 			</div>
@@ -83,9 +83,79 @@
 			</div>
 		</div>
 
-		<div class="panel panel-warning">
+		<div class="panel panel-info">
 			<div class="panel-heading">
-				<b><%= icon('clock-o')%>  Gallery</b>
+				<b><%= icon('tasks')%>  Project Components</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="pull-right">
+						<%= link_to '<i class="fa fa-plus"></i> Add new Project Component'.html_safe, new_project_project_component_path(@project) %> |
+						<%= link_to '<i class="fa fa-search"></i> View all Project Components'.html_safe, project_project_components_path(@project) %> 
+					</div>
+					<table class="table table-hover table-responsive">
+					  <thead>
+					    <tr>
+					      <th>Component Name</th>
+					      <th>Description</th>
+					      <th></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <% @project_components.each do |component| %>
+					      <tr>
+					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.component_name %></td>
+					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.description %></td>
+					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
+					      </tr>
+					    <% end %>
+					  </tbody>
+					</table>
+					<div class="text-center">
+					  <%= will_paginate @project_components, renderer: BootstrapPagination::Rails %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<b><%= icon('tasks')%>  Project Phases</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<div class="pull-right">
+						<%= link_to '<i class="fa fa-plus"></i> Add new Project Phase'.html_safe, new_project_project_phase_path(@project) %> |
+						<%= link_to '<i class="fa fa-search"></i> View all Project Phases'.html_safe, project_project_phases_path(@project) %> 
+					</div>
+					<table class="table table-hover table-responsive">
+					  <thead>
+					    <tr>
+					      <th>Phase Name</th>
+					      <th>Description</th>
+					      <th></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <% @project_phases.each do |phase| %>
+					      <tr>
+					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
+					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
+					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
+					      </tr>
+					    <% end %>
+					  </tbody>
+					</table>
+					<div class="text-center">
+					  <%= will_paginate @project_phases, renderer: BootstrapPagination::Rails %>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<b><%= icon('image')%>  Gallery</b>
 			</div>
 			<div class="panel-body">
 				<div class="col-xs-12">
@@ -95,7 +165,7 @@
   							</div>
   						<% end %>
 						<div class="col-xs-4">
-							<%= link_to image_tag(image.image_url(:thumbnail)), image %><br>
+							<%= link_to image_tag(image.image_url(:thumbnail)), project_project_image_path(@project, image) %><br>
   						</div>
 					<% end %>
 				</div>
