@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/admin_panel' => 'static_pages#admin_panel'
 
+  devise_for :users
   resources :projects do
     resources :project_phases
     resources :project_components
@@ -10,7 +11,6 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :universities
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

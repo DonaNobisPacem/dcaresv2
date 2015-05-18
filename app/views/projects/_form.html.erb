@@ -32,7 +32,7 @@
 			<%= f.input :percent_accomplishment, :label => "Percent Accomplisment:" %>
 			</div>
 			<div class="col-xs-6">
-			<%= f.input :percent_accomplishment_by, as: :date, :label => "Percent Accomplished By:", :start_year => Date.today.year, :end_year => 1900  %>
+			<%= f.input :percent_accomplishment_by, as: :date, :label => "Percent Accomplished By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true  %>
 			</div>
 
 			<div class="col-xs-12">
