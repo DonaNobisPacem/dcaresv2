@@ -11,6 +11,12 @@ class UniversitiesController < ApplicationController
   # GET /universities/1.json
   def show
   	@projects = Project.where(:university_id => @university.id).paginate(:page => params[:page], :per_page => 30)
+    respond_to do |format|
+      format.html
+      format.xlsx {
+        render xlsx: "show", filename: "#{@university.university_name}_infrastructures.xlsx"
+      }
+    end
   end
 
   # GET /universities/new

@@ -9,4 +9,5 @@ class Project < ActiveRecord::Base
 	has_many :contractors, as: :contractable
 	has_many :fund_sources, as: :fundable
 	accepts_nested_attributes_for :project_images, :project_components, :project_phases, :fund_sources
+	acts_as_xlsx
 end

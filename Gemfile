@@ -67,5 +67,10 @@ gem 'mini_magick'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+# Analytics
+gem 'axlsx'
+gem 'acts_as_xlsx'
+gem 'axlsx_rails'
+
 
 
