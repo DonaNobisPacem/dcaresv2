@@ -13,9 +13,9 @@
   <tbody>
     <% @project_phases.each do |phase| %>
       <tr>
-        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
-        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
-        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path( @project, phase ), :class => "btn btn-small btn-info" %></td>    
+        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
+        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
+        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path( @project, phase ), :class => "btn btn-small btn-info" %></td>    
       </tr>
     <% end %>
   </tbody>

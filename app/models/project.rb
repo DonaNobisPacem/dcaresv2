@@ -6,5 +6,7 @@ class Project < ActiveRecord::Base
 	has_many :project_images
 	has_many :project_components
 	has_many :project_phases
-	accepts_nested_attributes_for :project_images, :project_components, :project_phases
+	has_many :contractors, as: :contractable
+	has_many :fund_sources, as: :fundable
+	accepts_nested_attributes_for :project_images, :project_components, :project_phases, :fund_sources
 end

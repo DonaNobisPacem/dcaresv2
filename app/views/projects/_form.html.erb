@@ -3,6 +3,27 @@
 
   <div class="form-inputs">
 
+  	<div class="panel panel-info">
+  		<div class="panel-heading">
+  			<b>Project Status</b>
+  		</div>
+  		<div class="panel-body">
+  			<div class="col-xs-6">
+  				<%= f.input :status, :collection => ProjectStatus.all, :label_method => :description, :include_blank => false, :label => "Project Status" %>
+  			</div>
+  			<div class="col-xs-6">
+  				<%= f.input :completed_by, :label => "Completed By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
+  			</div>
+
+			<div class="col-xs-6">
+				<%= f.input :percent_accomplishment, :label => "Percent Accomplisment:" %>
+			</div>
+			<div class="col-xs-6">
+				<%= f.input :percent_accomplishment_by, :label => "Percent Accomplished By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
+			</div>
+  		</div>
+  	</div>
+
 	<div class="panel panel-info">
 		<div class="panel-heading">
 			<b>General Information</b>
@@ -10,8 +31,7 @@
 		<div class="panel-body">
 
 			<div class="col-xs-12">
-				<%= f.label :university_id, "Project of:" %>
-				<%= f.collection_select :university_id, University.all.order(:university_name), :id, :university_name, {prompt: "Select a CU"}, {class: "form-control", style: "margin-bottom: 10px"} %>
+				<%= f.input :university_id, :collection => University.all.order(:university_name), :label_method => :university_name, :include_blank => false, :label => "Project of:" %>
 			</div>
 
 		  	<div class="col-xs-6">
@@ -28,13 +48,6 @@
 			<%= f.input :expected_outcome, :label => "Expected Outcome:", :input_html => {:rows => 5} %>
 			</div>
 
-			<div class="col-xs-6">
-			<%= f.input :percent_accomplishment, :label => "Percent Accomplisment:" %>
-			</div>
-			<div class="col-xs-6">
-			<%= f.input :percent_accomplishment_by, as: :date, :label => "Percent Accomplished By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true  %>
-			</div>
-
 			<div class="col-xs-12">
 				<%= f.input :remarks, :label => "Remarks:", :input_html => {:rows => 10} %>
 			</div>
@@ -47,16 +60,16 @@
 		</div>
 		<div class="panel-body">
 			<div class="col-xs-12">
-				<%= f.input :bidding_contractor, :label => "Contractor:" %>
+				<%= f.input :bidding_contractor, :label => "Contractor/s:", :input_html => {:rows => 5} %>
 			</div>
 			<div class="col-xs-4">
 				<%= f.input :bidding_number, :label => "Number of Biddings:" %>
 			</div>
 			<div class="col-xs-4">
-				<%= f.input :bidding_award, as: :date, :label => "Date of Award:", :start_year => Date.today.year, :end_year => 1900  %>
+				<%= f.input :bidding_award, :label => "Date of Award:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY"  %>
 			</div>
 			<div class="col-xs-4">
-				<%= f.input :bidding_proceed, as: :date, :label => "Date to Proceed:", :start_year => Date.today.year, :end_year => 1900  %>
+				<%= f.input :bidding_proceed, :label => "Date to Proceed:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY"  %>
 			</div>
 		</div>
 	</div>
@@ -67,7 +80,9 @@
 		</div>
 		<div class="panel-body">
 			<div class="col-xs-12">
-				<%= f.input :financial_source, :label => "Source of funding:" %>
+				<%= f.association :fund_sources, as: :select, collection: FundSource.all.order(:source_name), :label_method => :source_name, :input_html => {:size => 10}, :label => "Source/s of funds:" %>
+
+				<%= f.input :financial_source, :label => "Other source/s (if applicable):" %>
 			</div>
 			<div class="col-xs-4">
 				<%= f.input :financial_budget, :label => "Budget:" %>
@@ -87,16 +102,16 @@
 		</div>
 		<div class="panel-body">
 			<div class="col-xs-6">
-				<%= f.input :timeline_target_start, as: :date, :label => "Target Start Date:", :start_year => Date.today.year, :end_year => 1900  %>
+				<%= f.input :timeline_target_start, :label => "Target Start Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
 			</div>
 			<div class="col-xs-6">
-				<%= f.input :timeline_target_end, as: :date, :label => "Target Completion Date:", :start_year => Date.today.year, :end_year => 1900  %>
+				<%= f.input :timeline_target_end, :label => "Target Completion Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
 			</div>
 			<div class="col-xs-6">
-				<%= f.input :timeline_actual_start, as: :date, :label => "Actual Start Date:", :start_year => Date.today.year, :end_year => 1900  %>
+				<%= f.input :timeline_actual_start, :label => "Actual Start Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
 			</div>
 			<div class="col-xs-6">
-				<%= f.input :timeline_actual_end, as: :date, :label => "Actual Completion Date:", :start_year => Date.today.year, :end_year => 1900  %>
+				<%= f.input :timeline_actual_end, :label => "Actual Completion Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
 			</div>
 		</div>
 	</div>

@@ -5,6 +5,26 @@
 	</div>
 	<div class="panel-body">
 		<p id="notice"><%= notice %></p>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<b><%= icon('history')%>  Project Status</b>
+			</div>
+			<div class="panel-body">
+				<div class="col-xs-12">
+					<b>Status: </b><%= ProjectStatus.find( @project.status ).description if @project.status %><br>
+					<b>Date Completed: </b><%= @project.completed_by.strftime("%d %B %Y") if @project.completed_by %><br>
+					<b>Last Updated: </b><%= @project.updated_at.strftime("%d %B %Y") if @project.updated_at %>
+				</div>
+				<div class="col-xs-12">
+					<div class="progress">
+					    <div class="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="<%= @project.percent_accomplishment %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.percent_accomplishment %>%">
+					        <span><%= @project.percent_accomplishment %>% Complete since <%= @project.percent_accomplishment_by.strftime("%d %B %Y") if @project.percent_accomplishment_by %></span>
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('info-circle')%>  General Information</b>
@@ -22,16 +42,6 @@
 					</div>
 				</div>
 
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="progress">
-						    <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="<%= @project.percent_accomplishment %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.percent_accomplishment %>%">
-						        <span><%= @project.percent_accomplishment %>% Complete since <%= @project.percent_accomplishment_by.strftime("%d %B %Y") if @project.percent_accomplishment_by %></span>
-						    </div>
-						</div>
-					</div>
-				</div>
-				
 				<div class="row">
 					<div class="col-xs-12">
 						<b>Remarks:</b><br>
@@ -61,7 +71,11 @@
 			</div>
 			<div class="panel-body">
 				<div class="col-xs-12">
-					 <b>Source of funds: </b><%= @project.financial_source %><br>
+					 <b>Source of funds: </b>
+					 <% @project.fund_sources.each do |source| %>
+					 	<li><%= source.source_name %></li>
+					 <% end %>
+					 <li><%= @project.financial_source %></li>
 					 <b>Budget: </b><%= @project.financial_budget %><br>
 					 <b>Contract Price: </b><%= @project.financial_contract_price %><br>
 					 <b>Actual Cost: </b><%= @project.financial_actual_cost %>
@@ -104,9 +118,9 @@
 					  <tbody>
 					    <% @project_components.each do |component| %>
 					      <tr>
-					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.component_name %></td>
-					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.description %></td>
-					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
+					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.component_name %></td>
+					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.description %></td>
+					        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
 					      </tr>
 					    <% end %>
 					  </tbody>
@@ -139,9 +153,9 @@
 					  <tbody>
 					    <% @project_phases.each do |phase| %>
 					      <tr>
-					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
-					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
-					        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
+					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
+					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
+					        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
 					      </tr>
 					    <% end %>
 					  </tbody>

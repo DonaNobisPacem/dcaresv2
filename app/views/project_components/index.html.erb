@@ -13,9 +13,9 @@
   <tbody>
     <% @project_components.each do |component| %>
       <tr>
-        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.component_name %></td>
-        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.description %></td>
-        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_component_path( @project, component ), :class => "btn btn-small btn-info" %></td>    
+        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.component_name %></td>
+        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.description %></td>
+        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_component_path( @project, component ), :class => "btn btn-small btn-info" %></td>    
       </tr>
     <% end %>
   </tbody>

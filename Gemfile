@@ -49,6 +49,8 @@ end
 # Form Helpers
 gem 'cocoon'
 gem 'simple_form'
+gem 'momentjs-rails', :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 # Twitter Bootstrap + Font Awesome
 gem 'font-awesome-sass'
@@ -64,4 +66,6 @@ gem 'mini_magick'
 # Pagination
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+
 

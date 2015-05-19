@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515005739) do
+ActiveRecord::Schema.define(version: 20150519053556) do
+
+  create_table "contractors", force: :cascade do |t|
+    t.integer  "contractable_id",   limit: 4
+    t.string   "contractable_type", limit: 255
+    t.string   "contractor_name",   limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+  end
+
+  add_index "contractors", ["contractable_type", "contractable_id"], name: "index_contractors_on_contractable_type_and_contractable_id", using: :btree
+
+  create_table "fund_sources", force: :cascade do |t|
+    t.string   "source_name",   limit: 255
+    t.integer  "fundable_id",   limit: 4
+    t.string   "fundable_type", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  add_index "fund_sources", ["fundable_type", "fundable_id"], name: "index_fund_sources_on_fundable_type_and_fundable_id", using: :btree
 
   create_table "project_components", force: :cascade do |t|
     t.integer  "project_id",                limit: 4
@@ -73,6 +93,12 @@ ActiveRecord::Schema.define(version: 20150515005739) do
 
   add_index "project_phases", ["project_id"], name: "index_project_phases_on_project_id", using: :btree
 
+  create_table "project_statuses", force: :cascade do |t|
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string   "project_name",              limit: 255
     t.string   "project_code",              limit: 255
@@ -81,7 +107,7 @@ ActiveRecord::Schema.define(version: 20150515005739) do
     t.text     "remarks",                   limit: 65535
     t.decimal  "percent_accomplishment",                  precision: 16, scale: 2
     t.datetime "percent_accomplishment_by"
-    t.string   "bidding_contractor",        limit: 255
+    t.text     "bidding_contractor",        limit: 65535
     t.integer  "bidding_number",            limit: 4
     t.datetime "bidding_award"
     t.datetime "bidding_proceed"
@@ -96,6 +122,8 @@ ActiveRecord::Schema.define(version: 20150515005739) do
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
     t.integer  "university_id",             limit: 4
+    t.integer  "status",                    limit: 4
+    t.datetime "completed_by"
   end
 
   add_index "projects", ["university_id"], name: "index_projects_on_university_id", using: :btree

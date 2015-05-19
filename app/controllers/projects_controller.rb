@@ -85,7 +85,7 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:university_id, :project_name, :project_code, :description, :expected_outcome, :percent_accomplishment, :percent_accomplishment_by, :remarks, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, project_images_attributes: [ :id, :project_id, :image, :description, :_destroy])
+      params.require(:project).permit(:university_id, :project_name, :project_code, :description, :expected_outcome, :percent_accomplishment, :percent_accomplishment_by, :remarks, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, :status, :completed_by, :fund_source_ids => [], project_images_attributes: [ :id, :project_id, :image, :description, :_destroy])
     end
 end
 
