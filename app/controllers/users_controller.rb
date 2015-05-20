@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :authenticate_user!
 
 	def index
-		@user = User.all
+		@users = User.paginate(:page => params[:page], :per_page => 30)
 	end
 
 	def show
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
 	private
 	  def user_params
 	    params.require(:user).permit(
-	    	:email, :password, :password_confirmation, :admin, :approved, :_destroy
+	    	:email, :password, :password_confirmation, :admin, :approved, :_destroy, :first_name, :last_name, :university_ids => []
 	    ) 
 	  end
 

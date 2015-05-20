@@ -1,7 +1,7 @@
 <div class="panel panel-success">
 	<div class="panel-heading text-center">
 		<h3><%= @project.project_name %></h3>
-		<b><%= @project.project_code %> - <%= @university.university_name %></b>
+		<b><%= @project.project_code %> - <%= link_to @university.university_name, @university %></b>
 	</div>
 	<div class="panel-body">
 		<p id="notice"><%= notice %></p>

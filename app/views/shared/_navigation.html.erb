@@ -51,8 +51,13 @@
 						<% end %>
 					</li>
 					<li>
-			      		<%= link_to edit_user_registration_path do %>
+			      		<%= link_to current_user do %>
 						  	<i class="fa fa-user"></i> <%= current_user.email %>
+						<% end %>
+					</li>
+					<li>
+			      		<%= link_to edit_user_registration_path do %>
+						  	<i class="fa fa-gear"></i> Settings
 						<% end %>
 					</li>
 			      	<li class="">

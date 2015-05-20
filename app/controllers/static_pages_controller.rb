@@ -3,6 +3,6 @@ class StaticPagesController < ApplicationController
 	end
 
 	def admin_panel
-		@users = User.all
+		@users = User.paginate(:page => params[:page], :per_page => 30)
 	end
 end

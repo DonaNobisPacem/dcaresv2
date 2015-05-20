@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150519053556) do
+ActiveRecord::Schema.define(version: 20150520102342) do
+
+  create_table "can_edits", force: :cascade do |t|
+    t.integer  "user_id",       limit: 4
+    t.integer  "university_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "can_edits", ["university_id"], name: "index_can_edits_on_university_id", using: :btree
+  add_index "can_edits", ["user_id"], name: "index_can_edits_on_user_id", using: :btree
 
   create_table "contractors", force: :cascade do |t|
     t.integer  "contractable_id",   limit: 4
@@ -41,7 +51,7 @@ ActiveRecord::Schema.define(version: 20150519053556) do
     t.text     "remarks",                   limit: 65535
     t.decimal  "percent_accomplishment",                  precision: 16, scale: 2
     t.datetime "percent_accomplishment_by"
-    t.string   "bidding_contractor",        limit: 255
+    t.text     "bidding_contractor",        limit: 65535
     t.integer  "bidding_number",            limit: 4
     t.datetime "bidding_award"
     t.datetime "bidding_proceed"
@@ -75,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150519053556) do
     t.text     "remarks",                   limit: 65535
     t.decimal  "percent_accomplishment",                  precision: 16, scale: 2
     t.datetime "percent_accomplishment_by"
-    t.string   "bidding_contractor",        limit: 255
+    t.text     "bidding_contractor",        limit: 65535
     t.integer  "bidding_number",            limit: 4
     t.datetime "bidding_award"
     t.datetime "bidding_proceed"
@@ -132,6 +142,7 @@ ActiveRecord::Schema.define(version: 20150519053556) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "university_name", limit: 255
+    t.string   "university_code", limit: 255
   end
 
   create_table "users", force: :cascade do |t|
@@ -151,11 +162,14 @@ ActiveRecord::Schema.define(version: 20150519053556) do
     t.boolean  "approved",               limit: 1,   default: false
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
+    t.integer  "designation",            limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "can_edits", "universities"
+  add_foreign_key "can_edits", "users"
   add_foreign_key "project_components", "projects"
   add_foreign_key "project_phases", "projects"
   add_foreign_key "projects", "universities"
