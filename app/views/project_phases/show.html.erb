@@ -61,7 +61,11 @@
 			</div>
 			<div class="panel-body">
 				<div class="col-xs-12">
-					 <b>Source of funds: </b><%= @project_phase.financial_source %><br>
+					 <b>Source of funds: </b>
+					 <% @project_phase.fund_sources.each do |source| %>
+					 	<li><%= source.source_name %></li>
+					 <% end %>
+					 <li><%= @project_phase.financial_source %></li>
 					 <b>Budget: </b><%= @project_phase.financial_budget %><br>
 					 <b>Contract Price: </b><%= @project_phase.financial_contract_price %><br>
 					 <b>Actual Cost: </b><%= @project_phase.financial_actual_cost %>

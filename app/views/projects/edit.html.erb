@@ -1,6 +1,9 @@
 <h1>Editing Project</h1>
-
-<%= render 'form' %>
+<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
+	<%= render 'form' %>
+<% else %>
+	<%= render 'shared/unauthorized' %>
+<% end %>
 
 <%= link_to 'Show', @project %> |
 <%= link_to 'Back', @project %>

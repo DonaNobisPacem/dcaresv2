@@ -34,11 +34,11 @@ University.create!([
 		{:university_name => "UP Baguio", :university_code => "UPB"},
 		{:university_name => "UP Cebu", :university_code => "UPC"},
 		{:university_name => "UP Diliman", :university_code => "UPD"},
-		{:university_name => "UP Los Banos", :university_code => "UPLB"},
+		{:university_name => "UP Los Banos", :university_code => "UPL"},
 		{:university_name => "UP Manila", :university_code => "UPM"},
-		{:university_name => "UP Mindanao", :university_code => "UPMIN"},
-		{:university_name => "UP Open University", :university_code => "UPOU"},
-		{:university_name => "UP PGH", :university_code => "UPPGH"},
+		{:university_name => "UP Mindanao", :university_code => "UPN"},
+		{:university_name => "UP Open University", :university_code => "UPO"},
+		{:university_name => "UP PGH", :university_code => "UPP"},
 		{:university_name => "UP System", :university_code => "UPS"},
 		{:university_name => "UP Visayas", :university_code => "UPV"},
 	])
@@ -115,7 +115,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "1",
-			:project_code => "",
+			:project_code => "IUPB2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -175,7 +175,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "2",
-			:project_code => "",
+			:project_code => "IUPC2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -235,7 +235,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "3",
-			:project_code => "",
+			:project_code => "IUPD2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -295,7 +295,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "4",
-			:project_code => "",
+			:project_code => "IUPL2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -328,7 +328,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "5",
-			:project_code => "",
+			:project_code => "IUPM2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -388,7 +388,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "6",
-			:project_code => "",
+			:project_code => "IUPN2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -448,7 +448,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "7",
-			:project_code => "",
+			:project_code => "IUPO2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -508,7 +508,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "8",
-			:project_code => "",
+			:project_code => "IUPP2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -568,7 +568,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "9",
-			:project_code => "",
+			:project_code => "IUPS2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),
@@ -628,7 +628,7 @@ xlsx.default_sheet = xlsx.sheets[0]
 	{ :project =>
 		{
 			:university_id => "10",
-			:project_code => "",
+			:project_code => "IUPV2015-" + (line - 7).to_s.rjust(3, '0'),
 			:project_name => xlsx.cell(line,'B'),
 			:description => xlsx.cell(line,'C'),
 			:expected_outcome => xlsx.cell(line,'D'),

@@ -1,6 +1,10 @@
 <h1>Editing Project Phase</h1>
 
-<%= render 'form' %>
+<% if current_user.admin || !current_user.universities.where(:id => @project_phase.project.university_id ).blank? %>
+	<%= render 'form' %>
+<% else %>
+	<%= render 'shared/unauthorized' %>
+<% end %>
 
 <%= link_to 'Show', project_project_phase_path(@project_phase.project, @project_phase) %> |
 <%= link_to 'Back', project_project_phase_path(@project_phase.project, @project_phase) %>
