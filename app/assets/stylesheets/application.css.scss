@@ -12,6 +12,7 @@
  *
  */
 
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -24,6 +25,7 @@ $navbar-default-link-color: #EBECB0;
 @import "bootstrap";
 @import "bootstrap-datetimepicker";
 
+@import "static_pages";
 body { padding-top: 50px; }
 
 .progress {
@@ -36,3 +38,15 @@ body { padding-top: 50px; }
     width: 100%;
     color: black;
  }
+
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+}

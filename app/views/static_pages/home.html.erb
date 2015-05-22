@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 	<br><br>
-	<%= render 'shared/university_selector' %>
-	
+	<%= render 'search' %>
+	<%= render 'shared/projects_list' %>
 <% else %>
 	<%= render 'signin' %>	
 <% end %>

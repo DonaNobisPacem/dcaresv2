@@ -29,9 +29,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
 # gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -42,8 +39,15 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
-    # Development server
+  # Development server
   gem 'thin'
+
+  # Use Capistrano for deployment
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-passenger'
 end
 
 # Form Helpers
@@ -67,10 +71,13 @@ gem 'mini_magick'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
-# Analytics
+# Analytics / Excel Handling
 gem 'axlsx'
 gem 'acts_as_xlsx'
 gem 'axlsx_rails'
+gem 'roo'
+
+# Search + Filtering 
+gem 'ransack'
 
 gem 'seed_dump'
-gem 'roo'

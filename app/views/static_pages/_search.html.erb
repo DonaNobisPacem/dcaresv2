@@ -1,0 +1,47 @@
+<div class="row">	
+	<div id="accordion" class="panel panel-info">
+		<div class="panel-heading">
+			<b><a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSearch" href="#collapseSearch"><%= icon('search')%> Search:</a></b>
+		</div>
+		<div id="collapseSearch" class="panel-collapse collapse in">
+			<div class="panel-body">
+				<%= search_form_for @q, url: search_static_pages_path do |f| %>
+					<div class="row">
+						<div class="col-xs-2">
+				  			<%= f.input :project_code_cont, :label => "Project Code:" %>
+				  		</div>
+				  		<div class="col-xs-5">
+				  			<%= f.input :project_name_cont, :label => "Project Title:" %>
+				  		</div>
+				  		<div class="col-xs-5">
+				  			<%= f.input :description_cont, :label => "Project Description:" %>
+				  		</div>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col-xs-6">
+				  			<%= f.input :bidding_contractor_cont, :label => "Contractor/s:" %>
+				  		</div>
+				  		<div class="col-xs-6">
+				  			<%= f.input :financial_source_cont, :label => "Source of fund/s:" %>
+				  		</div>
+				  	</div>
+				  	<div class="row">
+				  		<div class="col-xs-3">
+				  			<%= f.input :financial_budget_gteq, :label => "Min. Budget" %>
+				  		</div>
+				  		<div class="col-xs-3">
+				  			<%= f.input :financial_budget_lteq, :label => "Max. Budget" %>
+				  		</div>
+				  		<div class="col-xs-3">
+				  			<%= f.input :percent_accomplishment_gteq, :label => "Min. % Accomplishment" %>
+				  		</div>
+				  		<div class="col-xs-3">
+				  			<%= f.input :percent_accomplishment_lteq, :label => "Max. % Accomplishment" %>
+				  		</div>
+				  	</div>
+				  <%= f.button :submit, :class => "btn btn-success pull-right" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
