@@ -1,5 +1,4 @@
 set :stage, :production
-server 'ec2-52-74-232-161.ap-southeast-1.compute.amazonaws.com', user: 'ubuntu', roles: %w{web app}
 
 # server-based syntax
 # ======================
@@ -52,13 +51,13 @@ server 'ec2-52-74-232-161.ap-southeast-1.compute.amazonaws.com', user: 'ubuntu',
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-# server 'example.com',
-#   user: 'user_name',
-#   roles: %w{web app},
-#   ssh_options: {
-#     user: 'user_name', # overrides user setting above
-#     keys: %w(/home/user_name/.ssh/id_rsa),
-#     forward_agent: false,
-#     auth_methods: %w(publickey password)
-#     # password: 'please use keys'
-#   }
+server 'ec2-52-74-232-161.ap-southeast-1.compute.amazonaws.com',
+  user: 'ubuntu',
+  roles: %w{web app},
+  ssh_options: {
+    user: 'ubuntu', # overrides user setting above
+    keys: %w(/home/donanobispacem/.ssh/dcaresv2.pem),
+    forward_agent: false,
+    auth_methods: %w(publickey password)
+    # password: 'please use keys'
+  }
