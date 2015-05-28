@@ -4,9 +4,10 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/bundler'
 require 'capistrano/rails'
+require 'capistrano/rbenv'
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.2.2p65'
+set :rbenv_ruby, '2.2.2'
 
 # Include tasks from other gems included in your Gemfile
 #
@@ -20,7 +21,6 @@ set :rbenv_ruby, '2.2.2p65'
 #   https://github.com/capistrano/passenger
 #
 # require 'capistrano/rvm'
-# require 'capistrano/rbenv'
 # require 'capistrano/chruby'
 # require 'capistrano/bundler'
 # require 'capistrano/rails/assets'
