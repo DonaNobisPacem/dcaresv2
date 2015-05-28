@@ -28,6 +28,24 @@ User.create!([
     {:first_name => "Richmon", :last_name => "Pancho", :email => "rmpancho@up.edu.ph", :password => "pass1234", :password_confirmation => "pass1234", :admin => false, :approved => true },
     {:first_name => "Alfredo", :last_name => "Pascual", :email => "apascual@up.edu.ph", :password => "pass1234", :password_confirmation => "pass1234", :admin => false, :approved => true }
   ])
+ProjectStatus.create!([
+  {description: "Completed"},
+  {description: "Ongoing"},
+  {description: "Delayed"},
+  {description: "Terminated"}
+])
+University.create!([
+  {university_name: "UP Baguio", university_code: "UPB"},
+  {university_name: "UP Cebu", university_code: "UPC"},
+  {university_name: "UP Diliman", university_code: "UPD"},
+  {university_name: "UP Los Banos", university_code: "UPL"},
+  {university_name: "UP Manila", university_code: "UPM"},
+  {university_name: "UP Mindanao", university_code: "UPN"},
+  {university_name: "UP Open University", university_code: "UPO"},
+  {university_name: "UP PGH", university_code: "UPP"},
+  {university_name: "UP System", university_code: "UPS"},
+  {university_name: "UP Visayas", university_code: "UPV"}
+])
 CanEdit.create!([
   {user_id: 1, university_id: 9},
   {user_id: 4, university_id: 6},
@@ -721,22 +739,4 @@ ProjectComponent.create!([
   {project_id: 467, component_name: "Hot Process", description: nil, expected_outcome: nil, remarks: nil, percent_accomplishment: "0.0", percent_accomplishment_by: nil, bidding_contractor: nil, bidding_number: nil, bidding_award: nil, bidding_proceed: nil, financial_budget: "800000.0", financial_contract_price: nil, financial_actual_cost: nil, financial_source: nil, timeline_target_start: nil, timeline_target_end: nil, timeline_actual_start: nil, timeline_actual_end: nil},
   {project_id: 467, component_name: "Repair/Reconditioning of Different Existing Equipment", description: nil, expected_outcome: nil, remarks: nil, percent_accomplishment: "0.0", percent_accomplishment_by: nil, bidding_contractor: nil, bidding_number: nil, bidding_award: nil, bidding_proceed: nil, financial_budget: "400000.0", financial_contract_price: nil, financial_actual_cost: nil, financial_source: nil, timeline_target_start: nil, timeline_target_end: nil, timeline_actual_start: nil, timeline_actual_end: nil},
   {project_id: 467, component_name: "Purchase of Chemicals, Supplies and Utensils to be used of the Initial Income-generating Projects", description: nil, expected_outcome: nil, remarks: nil, percent_accomplishment: "0.0", percent_accomplishment_by: nil, bidding_contractor: nil, bidding_number: nil, bidding_award: nil, bidding_proceed: nil, financial_budget: "200000.0", financial_contract_price: nil, financial_actual_cost: nil, financial_source: nil, timeline_target_start: nil, timeline_target_end: nil, timeline_actual_start: nil, timeline_actual_end: nil}
-])
-ProjectStatus.create!([
-  {description: "Completed"},
-  {description: "Ongoing"},
-  {description: "Delayed"},
-  {description: "Terminated"}
-])
-University.create!([
-  {university_name: "UP Baguio", university_code: "UPB"},
-  {university_name: "UP Cebu", university_code: "UPC"},
-  {university_name: "UP Diliman", university_code: "UPD"},
-  {university_name: "UP Los Banos", university_code: "UPL"},
-  {university_name: "UP Manila", university_code: "UPM"},
-  {university_name: "UP Mindanao", university_code: "UPN"},
-  {university_name: "UP Open University", university_code: "UPO"},
-  {university_name: "UP PGH", university_code: "UPP"},
-  {university_name: "UP System", university_code: "UPS"},
-  {university_name: "UP Visayas", university_code: "UPV"}
 ])
