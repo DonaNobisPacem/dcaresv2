@@ -219,6 +219,7 @@
 		</div>
 	 	<div class="pull-right">
 			<%= link_to 'Edit', edit_project_path(@project) %> |
+			<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
 			<%= link_to 'Back', @university %>
 		</div>
  	</div>
