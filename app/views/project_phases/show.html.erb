@@ -40,10 +40,10 @@
 			</div>
 			<div class="panel-body">
 				<div class="col-xs-12">
-					<b>Contractor: </b><%= @project_phase.bidding_contractor %><br>
+					<b>Contractor/: </b><%= @project_phase.bidding_contractor %><br>
 					<b>Number of Biddings: </b><%= @project_phase.bidding_number %><br>
 					<b>Date of Award: </b><%= @project_phase.bidding_award.strftime("%d %B %Y") if @project_phase.bidding_award %><br>
-					<b>Date to Proceed: </b><%= @project_phase.bidding_proceed.strftime("%d %B %Y") if @project_phase.bidding_proceed %>
+					<b>Date of Notice to Proceed: </b><%= @project_phase.bidding_proceed.strftime("%d %B %Y") if @project_phase.bidding_proceed %>
 				</div>
 				<div class="col-xs-12">
 					<b>Remarks:</b><br>
