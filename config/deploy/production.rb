@@ -53,7 +53,7 @@ set :stage, :production
 # ------------------------------------
 server 'ec2-52-74-232-161.ap-southeast-1.compute.amazonaws.com',
   user: 'ubuntu',
-  roles: %w{web app},
+  roles: %w{web app db},
   ssh_options: {
     user: 'ubuntu', # overrides user setting above
     keys: %w(/home/donanobispacem/.ssh/dcaresv2.pem),
