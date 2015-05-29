@@ -19,7 +19,7 @@
 				<div class="col-xs-12">
 					<div class="progress">
 					    <div class="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="<%= @project.percent_accomplishment %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= @project.percent_accomplishment %>%">
-					        <span><%= @project.percent_accomplishment %>% Complete since <%= @project.percent_accomplishment_by.strftime("%d %B %Y") if @project.percent_accomplishment_by %></span>
+					        <span><%= @project.percent_accomplishment %>% Complete</span>
 					    </div>
 					</div>
 				</div>
@@ -41,13 +41,6 @@
 						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.expected_outcome) %></div>
 					</div>
 				</div>
-
-				<div class="row">
-					<div class="col-xs-12">
-						<b>Remarks:</b><br>
-						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.remarks) %></div>
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -60,7 +53,14 @@
 					<b>Contractor: </b><%= @project.bidding_contractor %><br>
 					<b>Number of Biddings: </b><%= @project.bidding_number %><br>
 					<b>Date of Award: </b><%= @project.bidding_award.strftime("%d %B %Y") if @project.bidding_award %><br>
-					<b>Date to Proceed: </b><%= @project.bidding_proceed.strftime("%d %B %Y") if @project.bidding_proceed %>
+					<b>Date to Notice to Proceed: </b><%= @project.bidding_proceed.strftime("%d %B %Y") if @project.bidding_proceed %>
+				</div>
+				<br>
+				<div class="col-xs-12">
+					<b>Remarks:</b><br>
+					<% unless @project.bidding_remarks.blank? %>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.bidding_remarks) %></div>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -76,9 +76,16 @@
 					 	<li><%= source.source_name %></li>
 					 <% end %>
 					 <li><%= @project.financial_source %></li>
-					 <b>Budget: </b><%= @project.financial_budget %><br>
-					 <b>Contract Price: </b><%= @project.financial_contract_price %><br>
-					 <b>Actual Cost: </b><%= @project.financial_actual_cost %>
+					 <b>Budget (PhP): </b><%= number_with_precision( @project.financial_budget, precision: 2, delimiter: ',' ) %><br>
+					 <b>Contract Price (PhP): </b><%= number_with_precision( @project.financial_contract_price, precision: 2, delimiter: ',' ) %><br>
+					 <b>Actual Cost (PhP): </b><%= number_with_precision( @project.financial_actual_cost, precision: 2, delimiter: ',' ) %>
+				</div>
+				<br>
+				<div class="col-xs-12">
+					<b>Remarks:</b><br>
+					<% unless @project.financial_remarks.blank? %>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.financial_remarks) %></div>
+					<% end %>
 				</div>
 			</div>
 		</div>
@@ -94,74 +101,98 @@
 					 <b>Actual Start Date: </b><%= @project.timeline_actual_start.strftime("%d %B %Y") if @project.timeline_actual_start %><br>
 					 <b>Actual Completion Date: </b><%= @project.timeline_actual_end.strftime("%d %B %Y") if @project.timeline_actual_end %>
 				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<b><%= icon('tasks')%>  Project Components</b>
-			</div>
-			<div class="panel-body">
+				<br>
 				<div class="col-xs-12">
-					<div class="pull-right">
-						<%= link_to '<i class="fa fa-plus"></i> Add new Project Component'.html_safe, new_project_project_component_path(@project) %> |
-						<%= link_to '<i class="fa fa-search"></i> View all Project Components'.html_safe, project_project_components_path(@project) %> 
-					</div>
-					<table class="table table-hover table-responsive">
-					  <thead>
-					    <tr>
-					      <th>Component Name</th>
-					      <th>Description</th>
-					      <th></th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <% @project_components.each do |component| %>
-					      <tr>
-					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.component_name %></td>
-					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= component.description %></td>
-					        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
-					      </tr>
-					    <% end %>
-					  </tbody>
-					</table>
-					<div class="text-center">
-					  <%= will_paginate @project_components, renderer: BootstrapPagination::Rails %>
-					</div>
+					<b>Remarks:</b><br>
+					<% unless @project.timeline_remarks.blank? %>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project.timeline_remarks) %></div>
+					<% end %>
 				</div>
 			</div>
 		</div>
 
+		<% if @project.has_components %>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<b><%= icon('tasks')%>  Project Components</b>
+				</div>
+				<div class="panel-body">
+					<div class="col-xs-12">
+						<div class="pull-right">
+							<%= link_to '<i class="fa fa-plus"></i> Add new Project Component'.html_safe, new_project_project_component_path(@project) %> |
+							<%= link_to '<i class="fa fa-search"></i> View all Project Components'.html_safe, project_project_components_path(@project) %> 
+						</div>
+						<table class="table table-hover table-responsive">
+						  <thead>
+						    <tr>
+						      <th>Component Name</th>
+						      <th>Description</th>
+						      <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <% @project_components.each do |component| %>
+						      <tr>
+						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= component.component_name %></td>
+						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= component.description %></td>
+						        <td style="text-align: right; word-wrap: break-word;min-width: 200px;max-width: 20	0px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
+						      </tr>
+						    <% end %>
+						  </tbody>
+						</table>
+						<div class="text-center">
+						  <%= will_paginate @project_components, renderer: BootstrapPagination::Rails %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
+		<% if @project.has_phases %>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<b><%= icon('tasks')%>  Project Phases</b>
+				</div>
+				<div class="panel-body">
+					<div class="col-xs-12">
+						<div class="pull-right">
+							<%= link_to '<i class="fa fa-plus"></i> Add new Project Phase'.html_safe, new_project_project_phase_path(@project) %> |
+							<%= link_to '<i class="fa fa-search"></i> View all Project Phases'.html_safe, project_project_phases_path(@project) %> 
+						</div>
+						<table class="table table-hover table-responsive">
+						  <thead>
+						    <tr>
+						      <th>Phase Name</th>
+						      <th>Description</th>
+						      <th></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <% @project_phases.each do |phase| %>
+						      <tr>
+						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= phase.phase_name %></td>
+						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= phase.description %></td>
+						        <td style="text-align: right; word-wrap: break-word;min-width: 200px;max-width: 200px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
+						      </tr>
+						    <% end %>
+						  </tbody>
+						</table>
+						<div class="text-center">
+						  <%= will_paginate @project_phases, renderer: BootstrapPagination::Rails %>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<b><%= icon('tasks')%>  Project Phases</b>
+				<b><%= icon('quote-right')%>  General Remarks</b>
 			</div>
 			<div class="panel-body">
-				<div class="col-xs-12">
-					<div class="pull-right">
-						<%= link_to '<i class="fa fa-plus"></i> Add new Project Phase'.html_safe, new_project_project_phase_path(@project) %> |
-						<%= link_to '<i class="fa fa-search"></i> View all Project Phases'.html_safe, project_project_phases_path(@project) %> 
-					</div>
-					<table class="table table-hover table-responsive">
-					  <thead>
-					    <tr>
-					      <th>Phase Name</th>
-					      <th>Description</th>
-					      <th></th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <% @project_phases.each do |phase| %>
-					      <tr>
-					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.phase_name %></td>
-					        <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= phase.description %></td>
-					        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
-					      </tr>
-					    <% end %>
-					  </tbody>
-					</table>
-					<div class="text-center">
-					  <%= will_paginate @project_phases, renderer: BootstrapPagination::Rails %>
+				<div class="row">
+					<div class="col-xs-12">
+						<%= simple_format(@project.remarks) %>
 					</div>
 				</div>
 			</div>
@@ -188,7 +219,7 @@
 		</div>
 	 	<div class="pull-right">
 			<%= link_to 'Edit', edit_project_path(@project) %> |
-			<%= link_to 'Back', projects_path %>
+			<%= link_to 'Back', @university %>
 		</div>
  	</div>
  </div>

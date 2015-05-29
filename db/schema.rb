@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520102342) do
+ActiveRecord::Schema.define(version: 20150529055811) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20150520102342) do
     t.datetime "timeline_actual_end"
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
+    t.text     "bidding_remarks",           limit: 65535
+    t.text     "financial_remarks",         limit: 65535
+    t.text     "timeline_remarks",          limit: 65535
   end
 
   add_index "project_components", ["project_id"], name: "index_project_components_on_project_id", using: :btree
@@ -99,6 +102,9 @@ ActiveRecord::Schema.define(version: 20150520102342) do
     t.datetime "timeline_actual_end"
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
+    t.text     "bidding_remarks",           limit: 65535
+    t.text     "financial_remarks",         limit: 65535
+    t.text     "timeline_remarks",          limit: 65535
   end
 
   add_index "project_phases", ["project_id"], name: "index_project_phases_on_project_id", using: :btree
@@ -129,11 +135,16 @@ ActiveRecord::Schema.define(version: 20150520102342) do
     t.datetime "timeline_target_end"
     t.datetime "timeline_actual_start"
     t.datetime "timeline_actual_end"
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
+    t.datetime "created_at",                                                                      null: false
+    t.datetime "updated_at",                                                                      null: false
     t.integer  "university_id",             limit: 4
     t.integer  "status",                    limit: 4
     t.datetime "completed_by"
+    t.text     "bidding_remarks",           limit: 65535
+    t.text     "financial_remarks",         limit: 65535
+    t.text     "timeline_remarks",          limit: 65535
+    t.boolean  "has_components",            limit: 1,                              default: true
+    t.boolean  "has_phases",                limit: 1,                              default: true
   end
 
   add_index "projects", ["university_id"], name: "index_projects_on_university_id", using: :btree

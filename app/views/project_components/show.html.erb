@@ -31,17 +31,10 @@
 						</div>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="col-xs-12">
-						<b>Remarks:</b><br>
-						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.remarks) %></div>
-					</div>
-				</div>
 			</div>
 		</div>
 
-		<div class="panel panel-warning">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('suitcase')%>  Bidding Details</b>
 			</div>
@@ -52,10 +45,16 @@
 					<b>Date of Award: </b><%= @project_component.bidding_award.strftime("%d %B %Y") if @project_component.bidding_award %><br>
 					<b>Date to Proceed: </b><%= @project_component.bidding_proceed.strftime("%d %B %Y") if @project_component.bidding_proceed %>
 				</div>
+				<div class="col-xs-12">
+					<b>Remarks:</b><br>
+					<% unless @project_component.bidding_remarks.blank? %>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.bidding_remarks) %></div>
+					<% end %>
+				</div>
 			</div>
 		</div>
 		 
-		 <div class="panel panel-warning">
+		 <div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('money')%>  Financial Details</b>
 			</div>
@@ -66,14 +65,20 @@
 					 	<li><%= source.source_name %></li>
 					 <% end %>
 					 <li><%= @project_component.financial_source %></li>
-					 <b>Budget: </b><%= @project_component.financial_budget %><br>
-					 <b>Contract Price: </b><%= @project_component.financial_contract_price %><br>
-					 <b>Actual Cost: </b><%= @project_component.financial_actual_cost %>
+					 <b>Budget (PhP): </b><%= number_with_precision( @project_component.financial_budget, precision: 2, delimiter: ',' ) %><br>
+					 <b>Contract Price (PhP): </b><%= number_with_precision( @project_component.financial_contract_price, precision: 2, delimiter: ',' ) %><br>
+					 <b>Actual Cost (PhP): </b><%= number_with_precision( @project_component.financial_actual_cost, precision: 2, delimiter: ',' ) %>
+				</div>
+				<div class="col-xs-12">
+					<b>Remarks:</b><br>
+					<% unless @project_component.financial_remarks.blank? %>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.financial_remarks) %></div>
+					<% end %>
 				</div>
 			</div>
 		</div>
 
-		<div class="panel panel-warning">
+		<div class="panel panel-info">
 			<div class="panel-heading">
 				<b><%= icon('clock-o')%>  Timeline</b>
 			</div>
@@ -83,6 +88,25 @@
 					 <b>Target Completion Date: </b><%= @project_component.timeline_target_end.strftime("%d %B %Y") if @project_component.timeline_target_end %><br>
 					 <b>Actual Start Date: </b><%= @project_component.timeline_actual_start.strftime("%d %B %Y") if @project_component.timeline_actual_start %><br>
 					 <b>Actual Completion Date: </b><%= @project_component.timeline_actual_end.strftime("%d %B %Y") if @project_component.timeline_actual_end %>
+				</div>
+				<div class="col-xs-12">
+					<b>Remarks:</b><br>
+					<% unless @project_component.timeline_remarks.blank? %>
+						<div class="well well-sm" style="overflow:auto"><%= simple_format(@project_component.timeline_remarks) %></div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<b><%= icon('quote-right')%>  General Remarks</b>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-xs-12">
+						<%= simple_format(@project_component.remarks) %>
+					</div>
 				</div>
 			</div>
 		</div>
