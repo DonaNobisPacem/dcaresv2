@@ -119,7 +119,9 @@
 				<div class="panel-body">
 					<div class="col-xs-12">
 						<div class="pull-right">
-							<%= link_to '<i class="fa fa-plus"></i> Add new Project Component'.html_safe, new_project_project_component_path(@project) %> |
+							<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
+								<%= link_to '<i class="fa fa-plus"></i> Add new Project Component'.html_safe, new_project_project_component_path(@project) %> |
+							<% end %>
 							<%= link_to '<i class="fa fa-search"></i> View all Project Components'.html_safe, project_project_components_path(@project) %> 
 						</div>
 						<table class="table table-hover table-responsive">
@@ -156,7 +158,9 @@
 				<div class="panel-body">
 					<div class="col-xs-12">
 						<div class="pull-right">
-							<%= link_to '<i class="fa fa-plus"></i> Add new Project Phase'.html_safe, new_project_project_phase_path(@project) %> |
+							<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
+								<%= link_to '<i class="fa fa-plus"></i> Add new Project Phase'.html_safe, new_project_project_phase_path(@project) %> |
+							<% end %>
 							<%= link_to '<i class="fa fa-search"></i> View all Project Phases'.html_safe, project_project_phases_path(@project) %> 
 						</div>
 						<table class="table table-hover table-responsive">
@@ -218,8 +222,10 @@
 			</div>
 		</div>
 	 	<div class="pull-right">
-			<%= link_to 'Edit', edit_project_path(@project) %> |
-			<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+	 		<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
+				<%= link_to 'Edit', edit_project_path(@project) %> |
+				<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+			<% end %>
 			<%= link_to 'Back', @university %>
 		</div>
  	</div>
