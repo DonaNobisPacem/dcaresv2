@@ -10,7 +10,9 @@ class UniversitiesController < ApplicationController
   # GET /universities/1
   # GET /universities/1.json
   def show
-  	@projects = Project.where(:university_id => @university.id).paginate(:page => params[:page], :per_page => 10)
+  	#@projects = Project.where(:university_id => @university.id).paginate(:page => params[:page], :per_page => 10)
+    @q = Project.where(:university_id => @university.id).ransack(params[:q])
+    @projects = @q.result.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.xlsx {
@@ -66,6 +68,11 @@ class UniversitiesController < ApplicationController
       format.html { redirect_to universities_url, notice: 'University was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    show
+    render :show
   end
 
   private

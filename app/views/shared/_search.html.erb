@@ -1,9 +1,8 @@
-<div class="row">	
-	<div id="accordion" class="panel panel-info">
+<div id="accordion" class="panel panel-info">
 		<div class="panel-heading">
 			<b><a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSearch" href="#collapseSearch"><%= icon('search')%> Search:</a></b>
 		</div>
-		<div id="collapseSearch" class="panel-collapse collapse in">
+		<div id="collapseSearch" class="panel-collapse collapse">
 			<div class="panel-body">
 				<%= search_form_for @q, url: search_static_pages_path do |f| %>
 					<div class="row">
@@ -44,4 +43,3 @@
 			</div>
 		</div>
 	</div>
-</div>
