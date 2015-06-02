@@ -71,6 +71,6 @@ class ProjectPhasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_phase_params
-      params.require(:project_phase).permit(:project_id, :phase_name, :description, :expected_outcome, :percent_accomplishment, :percent_accomplishment_by, :remarks, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end)
+      params.require(:project_phase).permit(:project_id, :phase_name, :description, :expected_outcome, :percent_accomplishment, :percent_accomplishment_by, :remarks, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, :fund_source_ids => [])
     end
 end
