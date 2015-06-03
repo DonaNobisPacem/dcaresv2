@@ -1,0 +1,63 @@
+<br>
+<div class="row">
+<%= search_form_for @q, url: filter_static_pages_path do |f| %>
+	<div class="row">
+  		<div class="col-xs-6">
+  			<%= f.input :status_eq, :collection => ProjectStatus.all, :label_method => :description, :include_blank => true, :label => "Project Status", required: false %>
+  		</div>
+  		<div class="col-xs-6">
+  			<%= f.input :university_id_eq, :collection => University.all.order(:university_name), :label_method => :university_name, :include_blank => true, :label => "Project of:", required: false %>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-xs-6">
+  			<%= f.input :timeline_actual_end_gteq, :label => "From Completion Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY", required: false %>
+  		</div>
+  		<div class="col-xs-6">
+  			<%= f.input :timeline_actual_end_lteq, :label => "To Completion Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY", required: false %>
+  		</div>
+  	</div>
+  <%= f.button :submit, :class => "btn btn-success pull-right" %>
+<% end %>
+</div>
+<br>
+<% if params[:q] && @projects.count > 0 %>
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="jumbotron">
+				<b>Constituent University:</b> <%= @projects.first.university.university_name %><br>
+				<b><%= ProjectStatus.find(@projects.first.status).description %> projects:</b> <%= @projects.count %><br>
+				<b>From Completion Date:</b> <%= params[:q][:timeline_actual_end_gteq].to_date.try(:strftime, "%d %B %Y") %><br>
+				<b>To Completion Date:</b> <%= params[:q][:timeline_actual_end_lteq].to_date.try(:strftime, "%d %B %Y") %><br>
+			</div>
+		</div>
+	</div>
+<% end %>
+<br>
+<div class="row">
+	<% @projects.each do |project| %>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="well">
+					<div class="row">
+						<div class="col-xs-2">
+							Project Code:<br>
+							<b><%= project.project_code %></b>
+						</div>
+						<div class="col-xs-5">
+							Project Title:<br>
+							<b><%= project.project_name %></b>
+						</div>
+						<div class="col-xs-3">
+							Date of Completion:<br>
+							<b><%= project.timeline_actual_end.try(:strftime, "%d %B %Y") %></b>
+						</div>
+						<div class="col-xs-2">
+							<%= link_to "View details", project %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<% end %>
+</div>
