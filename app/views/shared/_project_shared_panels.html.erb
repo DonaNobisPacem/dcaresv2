@@ -1,0 +1,121 @@
+<!-- Project Status -->
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<b><%= icon('history')%>  Project Status</b>
+	</div>
+	<div class="panel-body">
+		<div class="col-xs-12">
+			<b>Status: </b><%= ProjectStatus.find( project.status ).description if project.status %><br>
+			<b>Date Completed: </b><%= project.completed_by.strftime("%d %B %Y") if project.completed_by %><br>
+			<b>Last Updated: </b><%= project.updated_at.strftime("%d %B %Y") if project.updated_at %>
+		</div>
+		<div class="col-xs-12">
+			<div class="progress">
+			    <div class="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="<%= project.percent_accomplishment %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.percent_accomplishment %>%">
+			        <span><%= project.percent_accomplishment %>% Complete</span>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- General Information -->
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<b><%= icon('info-circle')%>  General Information</b>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-xs-6">
+				<b>Description:</b><br>
+				<div class="well well-sm" style="overflow:auto"><%= simple_format(project.description) %></div>
+			</div>
+			<div class="col-xs-6">
+				<b>Expected Outcome:</b><br>
+				<div class="well well-sm" style="overflow:auto"><%= simple_format(project.expected_outcome) %></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<b>End User/s:</b><br>
+				<div class="well well-sm" style="overflow:auto"><%= simple_format(project.end_user) %></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Bidding Details -->
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<b><%= icon('suitcase')%>  Bidding Details</b>
+	</div>
+	<div class="panel-body">
+		<div class="col-xs-12">
+			<b>Contractor/s: </b><%= project.bidding_contractor %><br>
+			<b>Number of Biddings: </b><%= project.bidding_number %><br>
+			<b>Date of Award: </b><%= project.bidding_award.strftime("%d %B %Y") if project.bidding_award %><br>
+			<b>Date of Notice to Proceed: </b><%= project.bidding_proceed.strftime("%d %B %Y") if project.bidding_proceed %><br>
+			<b>Project Duration (in Calendar Days): </b><%= project.bidding_duration %><br>
+			<b>Project Extension (in Calendar Days): </b><%= project.bidding_extension %><br>
+		</div>
+		<br>
+		<div class="col-xs-12">
+			<b>Remarks:</b><br>
+			<% unless project.bidding_remarks.blank? %>
+				<div class="well well-sm" style="overflow:auto"><%= simple_format(project.bidding_remarks) %></div>
+			<% end %>
+		</div>
+	</div>
+</div>
+ 
+<!-- Financial Details -->
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<b><%= icon('money')%>  Financial Details</b>
+	</div>
+	<div class="panel-body">
+		<div class="col-xs-12">
+			 <b>Source of funds: </b>
+			 <% project.fund_sources.each do |source| %>
+			 	<li><%= source.source_name %></li>
+			 <% end %>
+			 <% unless project.financial_source.blank? %>
+			 	<li><%= project.financial_source %></li>
+			 <% end %>
+			 <b>Budget (PhP): </b><%= number_with_precision( project.financial_budget, precision: 2, delimiter: ',' ) %><br>
+			 <b>Contract Price (PhP): </b><%= number_with_precision( project.financial_contract_price, precision: 2, delimiter: ',' ) %><br>
+			 <b>Actual Cost (PhP): </b><%= number_with_precision( project.financial_actual_cost, precision: 2, delimiter: ',' ) %><br>
+			 <b>Variation Order (PhP): </b><%= number_with_precision( project.financial_variation, precision: 2, delimiter: ',' ) %> || <%= number_with_precision( (100*project.financial_variation/project.financial_budget), precision: 2, delimiter: ',' ) unless project.financial_budget.blank? || project.financial_variation.blank? %>% of Budget<br>
+		</div>
+		<br>
+		<div class="col-xs-12">
+			<b>Remarks:</b><br>
+			<% unless project.financial_remarks.blank? %>
+				<div class="well well-sm" style="overflow:auto"><%= simple_format(project.financial_remarks) %></div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<!-- Timeline -->
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<b><%= icon('clock-o')%>  Timeline</b>
+	</div>
+	<div class="panel-body">
+		<div class="col-xs-12">
+			 <b>Target Start Date: </b><%= project.timeline_target_start.strftime("%d %B %Y") if project.timeline_target_start %><br>
+			 <b>Target Completion Date: </b><%= project.timeline_target_end.strftime("%d %B %Y") if project.timeline_target_end %><br>
+			 <b>Actual Start Date: </b><%= project.timeline_actual_start.strftime("%d %B %Y") if project.timeline_actual_start %><br>
+			 <b>Actual Completion Date: </b><%= project.timeline_actual_end.strftime("%d %B %Y") if project.timeline_actual_end %>
+		</div>
+		<br>
+		<div class="col-xs-12">
+			<b>Remarks:</b><br>
+			<% unless project.timeline_remarks.blank? %>
+				<div class="well well-sm" style="overflow:auto"><%= simple_format(project.timeline_remarks) %></div>
+			<% end %>
+		</div>
+	</div>
+</div>

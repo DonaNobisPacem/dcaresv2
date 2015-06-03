@@ -10,7 +10,7 @@ class StaticPagesController < ApplicationController
 
 	def report
 		@q = Project.ransack(params[:q])
-		@projects = @q.result.paginate(:page => params[:page], :per_page => 100)
+		@projects = @q.result
 	end
 
 	def filter

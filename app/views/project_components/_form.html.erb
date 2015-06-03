@@ -37,6 +37,10 @@
 			</div>
 
 			<div class="col-xs-12">
+				<%= f.input :end_user, :label => "End User/s:", :input_html => {:rows => 5} %>
+			</div>
+
+			<div class="col-xs-12">
 				<%= f.input :remarks, :label => "Remarks:", :input_html => {:rows => 5} %>
 			</div>
 		</div>
@@ -59,6 +63,12 @@
 			<div class="col-xs-4">
 				<%= f.input :bidding_proceed, :label => "Date to Proceed:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY"  %>
 			</div>
+			<div class="col-xs-6">
+				<%= f.input :bidding_duration, :label => "Project Duration (in Calendar days):" %>
+			</div>
+			<div class="col-xs-6">
+				<%= f.input :bidding_extension, :label => "Project Extension (in Calendar days):" %>
+			</div>
 			<div class="col-xs-12">
 				<%= f.input :bidding_remarks, :label => "Remarks:", :input_html => {:rows => 5} %>
 			</div>
@@ -74,14 +84,17 @@
 				<%= f.association :fund_sources, as: :select, collection: FundSource.all.order(:source_name), :label_method => :source_name, :input_html => {:size => 10}, :label => "Source/s of funds:" %>
 				<%= f.input :financial_source, :label => "Other source/s (if applicable):" %>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				<%= f.input :financial_budget, :label => "Budget (PhP):" %>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				<%= f.input :financial_contract_price, :label => "Contract Price (PhP):" %>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				<%= f.input :financial_actual_cost, :label => "Actual Cost (PhP):" %>
+			</div>
+			<div class="col-xs-3">
+				<%= f.input :financial_variation, :label => "Variation Order (PhP):" %>
 			</div>
 			<div class="col-xs-12">
 				<%= f.input :financial_remarks, :label => "Remarks:", :input_html => {:rows => 5} %>
