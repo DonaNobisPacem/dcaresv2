@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603080244) do
+ActiveRecord::Schema.define(version: 20150604093304) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -69,8 +69,8 @@ ActiveRecord::Schema.define(version: 20150603080244) do
     t.text     "financial_remarks",         limit: 65535
     t.text     "timeline_remarks",          limit: 65535
     t.text     "end_user",                  limit: 65535
-    t.integer  "bidding_duration",          limit: 4
-    t.integer  "bidding_extension",         limit: 4
+    t.integer  "timeline_duration",         limit: 4
+    t.integer  "timeline_extension",        limit: 4
     t.decimal  "financial_variation",                     precision: 16, scale: 2
     t.integer  "status",                    limit: 4
     t.datetime "completed_by"
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20150603080244) do
     t.text     "financial_remarks",         limit: 65535
     t.text     "timeline_remarks",          limit: 65535
     t.text     "end_user",                  limit: 65535
-    t.integer  "bidding_duration",          limit: 4
-    t.integer  "bidding_extension",         limit: 4
+    t.integer  "timeline_duration",         limit: 4
+    t.integer  "timeline_extension",        limit: 4
     t.decimal  "financial_variation",                     precision: 16, scale: 2
     t.integer  "status",                    limit: 4
     t.datetime "completed_by"
@@ -158,8 +158,8 @@ ActiveRecord::Schema.define(version: 20150603080244) do
     t.boolean  "has_components",            limit: 1,                              default: true
     t.boolean  "has_phases",                limit: 1,                              default: true
     t.text     "end_user",                  limit: 65535
-    t.integer  "bidding_duration",          limit: 4
-    t.integer  "bidding_extension",         limit: 4
+    t.integer  "timeline_duration",         limit: 4
+    t.integer  "timeline_extension",        limit: 4
     t.decimal  "financial_variation",                     precision: 16, scale: 2
   end
 

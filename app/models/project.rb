@@ -15,6 +15,18 @@ class Project < ActiveRecord::Base
 	accepts_nested_attributes_for :project_images, :project_components, :project_phases, :fund_sources
 	acts_as_xlsx
 
+	def variation_percentage
+		if financial_variation.present?
+			if financial_contract_price.present?
+				return 100*financial_variation/financial_contract_price
+			else
+				if financial_budget.present?
+					return 100*financial_variation/financial_budget
+				end
+			end
+		end
+	end
+
 	private
 		def project_images_count_within_bounds
 	    	return if project_images.blank?
