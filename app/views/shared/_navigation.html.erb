@@ -25,21 +25,6 @@
 							<% end %>
 						</ul>
 					</li>
-					<li class="dropdown">
-			     		<%= link_to '<i class="fa fa-building"></i> Projects <i class="fa fa-caret-down"></i>'.html_safe, projects_path, :id => 'projectdrop', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
-			     		<ul class="dropdown-menu">
-							<li>
-								<%= link_to projects_path do %>
-								  	<i class="fa fa-building"></i> View Projects
-								<% end %>
-							</li>
-							<li>
-								<%= link_to new_project_path do %>
-								<i class="fa fa-plus"></i> Add New Project
-								<% end %>
-							</li>
-						</ul>
-					</li>
 					<li>
 			      		<%= link_to report_path do %>
 						  	<i class="fa fa-print"></i> Reports

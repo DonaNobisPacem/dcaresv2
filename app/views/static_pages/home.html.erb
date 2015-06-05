@@ -1,9 +1,25 @@
 <% if user_signed_in? %>
 	<br>
-	<%= render 'shared/university_selector' %>
-	<br>
 	<%= render 'shared/search' %>
-	<%= render 'shared/projects_list' %>
+	<table class="table table-hover table-responsive">
+		<thead>
+			<tr>
+				<th>Constituent University</th>
+				<th>University Code</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% University.find_each do |university| %>
+				<tr>
+					<td><%= university.university_name %></td>
+					<td><%= university.university_code %></td>
+					<td class="pull-right"><%= link_to 'View Projects', university %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 <% else %>
 	<%= render 'signin' %>	
 <% end %>

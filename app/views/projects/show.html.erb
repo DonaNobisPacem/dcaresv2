@@ -104,8 +104,15 @@
 				<b><%= icon('image')%>  Gallery</b>
 			</div>
 			<div class="panel-body">
+				<div class="pull-right">
+					<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
+						<%= link_to '<i class="fa fa-plus"></i> Add new Project Image'.html_safe, edit_project_path(@project) %> |
+					<% end %>
+					<%= link_to '<i class="fa fa-search"></i> View all Project Images'.html_safe, project_project_images_path(@project) %> 
+				</div>
 				<div class="col-xs-12">
 					<% @project_images.each_with_index do |image, index| %>
+						<%= index %>
   						<% if index % 3 == 0 %>
   							<div class="row">
   							</div>
@@ -123,7 +130,7 @@
 				<%= link_to 'Edit', edit_project_path(@project) %> |
 				<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
 			<% end %>
-			<%= link_to 'Back', @university %>
+			<%= link_to 'Back', :back %>
 		</div>
  	</div>
  </div>

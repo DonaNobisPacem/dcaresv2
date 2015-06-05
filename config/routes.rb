@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   get '/admin_panel' => 'static_pages#admin_panel'
   get '/report' => 'static_pages#report'
+  get '/result' => 'static_pages#result'
 
   devise_for :users
   resources :projects do

@@ -4,7 +4,8 @@ class ProjectImagesController < ApplicationController
   # GET /project_images
   # GET /project_images.json
   def index
-    @project_images = ProjectImage.all
+    @project = Project.find(params[:project_id])
+    @project_images = @project.project_images.paginate(:page => params[:page], :per_page => 15)
   end
 
   # GET /project_images/1
