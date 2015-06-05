@@ -45,4 +45,16 @@ namespace :projects do
 			project.save!
 		end
 	end
+
+	desc "Change University Code and update respective project codes"
+	task :change_code_ou => :environment do
+		@univ_ou = University.find(7)
+		@univ_ou.university_code = "UPOU"
+		@univ_ou.save!
+		@univ_ou_projects = Project.where(:university_id => "7")
+		@univ_ou_projects.each_with_index do |project, index|
+			project.project_code = "I" + @univ_ou.university_code + "2015-" + (index+1).to_s.rjust(3,'0')
+			project.save!
+		end
+	end
 end

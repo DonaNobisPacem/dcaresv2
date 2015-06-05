@@ -14,7 +14,7 @@
         <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= project.project_code %></td>
         <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= project.project_name %></td>
         <td style="text-align: left; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= project.description %></td>
-        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project %><br><%= link_to "View images", project_project_images_path(project) %></td>
+        <td style="text-align: right; word-wrap: break-word;min-width: 160px;max-width: 160px;white-space:normal;"><%= link_to "View details", project %><br><%= link_to "View images", project_project_images_path(project) unless project.project_images.blank? %></td>
         </tr>
     <% end %>
   </tbody>
