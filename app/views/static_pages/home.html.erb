@@ -14,16 +14,18 @@
 	</div>
 	<div class="row row-eq-height">
 		<div class="well well-dynamic col-xs-6">
+			<%= render 'shared/university_selector' %>
 			<div class="text-justify">
 				<h5>Navigate through the system and select which CU's infrastructure projects you wish to view. Viewing your home CU allows you to add and edit infrastructure project-related information.</h5>
 			</div>
-			<%= render 'shared/university_selector' %>
 		</div>
 		<div class="well well-dynamic col-xs-6">
-			<div class="text-justify">
-				<h5>Generate a list of infrastructure projects according to their Project Status, Time of Completion, and Assigned CU.<br><br><br></h5>
-			</div>
 			<%= link_to "Generate reports", report_path, :class => "btn btn-success col-xs-12" %>
+			<div class="row">
+			</div>
+			<div class="text-justify">
+				<h5>Generate a list of infrastructure projects according to their Project Status, Time of Completion, and Assigned CU.</h5>
+			</div>
 		</div>
 	</div>
 	<div class="row">
