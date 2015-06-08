@@ -3,9 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  heights = $('.well').map(->
+  heights = $('.well-dynamic').map(->
     $(this).height()
   ).get()
   maxHeight = Math.max.apply(null, heights)
-  $('.well').height maxHeight
+  $('.well-dynamic').height maxHeight
   return

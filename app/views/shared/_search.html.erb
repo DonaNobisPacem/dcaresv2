@@ -1,6 +1,6 @@
 <div id="accordion" class="panel panel-info">
 	<div class="panel-heading">
-		<b><a class="accordion-toggle" data-toggle="collapse" data-target="#collapseSearch" href="#collapseSearch"><%= icon('search')%> Search:</a></b>
+		<b><span class="accordion-toggle" data-toggle="collapse" data-target="#collapseSearch" data-parent="#accordion" href="#collapseSearch"><%= icon('search')%> Search:</span></b>
 	</div>
 	<div id="collapseSearch" class="panel-collapse collapse">
 		<div class="panel-body">
@@ -59,3 +59,13 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$("#accordion").on("shown.bs.collapse", function () {
+    var myEl = $(this).find('.collapse.in').prev('.panel-heading');
+
+    $('html, body').animate({
+        scrollTop: $(myEl).offset().top
+    }, 500);
+});
+</script>
