@@ -1,25 +1,39 @@
 <% if user_signed_in? %>
 	<br>
-	<%= render 'shared/search' %>
-	<table class="table table-hover table-responsive">
-		<thead>
-			<tr>
-				<th>Constituent University</th>
-				<th>University Code</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<% University.find_each do |university| %>
-				<tr>
-					<td><%= university.university_name %></td>
-					<td><%= university.university_code %></td>
-					<td class="pull-right"><%= link_to 'View Projects', university %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+	<div class="row">
+		<div class="jumbotron">
+			<div class="row">
+				<div class="text-center">
+					<%= image_tag "upseal_home.png"%>
+				</div>
+				<div class="text-justify">
+					<h5>Welcome to the Office of the Vice President for Development's Data Reporting and Collection System or OVPDCares for Infrastructure Project. The system serves as a digital hub for infrastructure-related information across all constituent universities of the University of the Philippines.</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row row-eq-height">
+		<div class="well col-xs-6">
+			<div class="text-justify">
+				<h5>Navigate through the system and select which CU's infrastructure projects you wish to view. Viewing your home CU allows you to add and edit infrastructure project-related information.</h5>
+			</div>
+			<%= render 'shared/university_selector' %>
+		</div>
+		<div class="well col-xs-6">
+			<div class="text-justify">
+				<h5>Generate a list of infrastructure projects according to their Project Status, Time of Completion, and Assigned CU.</h5>
+			</div>
+			<%= link_to "Generate reports", report_path, :class => "btn btn-success col-xs-12" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="well">
+			<div class="text-justify">
+				<h5>Quickly look for related infrastructure projects by sorting through their Project Title, Project Status, Assigned CU, and Source of Funds, among others.</h5>
+			</div>
+			<%= render 'shared/search' %>
+		</div>
+	</div>
 <% else %>
 	<%= render 'signin' %>	
 <% end %>
