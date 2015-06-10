@@ -58,7 +58,7 @@ class ProjectComponentsController < ApplicationController
     @redirect_url = @project_component.project
     @project_component.destroy
     respond_to do |format|
-      format.html { redirect_to project_path(@redirect_url), notice: 'Project component was successfully destroyed.' }
+      format.html { redirect_to project_path(@redirect_url), notice: 'Project component was successfully deleted.' }
       format.json { head :no_content }
     end
   end

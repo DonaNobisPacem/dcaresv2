@@ -58,7 +58,7 @@ class ProjectPhasesController < ApplicationController
     @redirect_url = @project_phase.project
     @project_phase.destroy
     respond_to do |format|
-      format.html { redirect_to project_path(@redirect_url), notice: 'Project phase was successfully destroyed.' }
+      format.html { redirect_to project_path(@redirect_url), notice: 'Project phase was successfully deleted.' }
       format.json { head :no_content }
     end
   end

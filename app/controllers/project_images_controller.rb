@@ -58,7 +58,7 @@ class ProjectImagesController < ApplicationController
     @redirect_url = @project_image.project
     @project_image.destroy
     respond_to do |format|
-      format.html { redirect_to @redirect_url, notice: 'Project image was successfully destroyed.' }
+      format.html { redirect_to @redirect_url, notice: 'Project image was successfully deleted.' }
       format.json { head :no_content }
     end
   end
