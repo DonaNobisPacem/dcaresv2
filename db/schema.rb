@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150604093304) do
+ActiveRecord::Schema.define(version: 20150610083510) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -42,6 +42,36 @@ ActiveRecord::Schema.define(version: 20150604093304) do
   end
 
   add_index "fund_sources", ["fundable_type", "fundable_id"], name: "index_fund_sources_on_fundable_type_and_fundable_id", using: :btree
+
+  create_table "fundable_components", force: :cascade do |t|
+    t.integer  "project_component_id", limit: 4
+    t.integer  "fund_source_id",       limit: 4
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "fundable_components", ["fund_source_id"], name: "index_fundable_components_on_fund_source_id", using: :btree
+  add_index "fundable_components", ["project_component_id"], name: "index_fundable_components_on_project_component_id", using: :btree
+
+  create_table "fundable_phases", force: :cascade do |t|
+    t.integer  "project_phase_id", limit: 4
+    t.integer  "fund_source_id",   limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "fundable_phases", ["fund_source_id"], name: "index_fundable_phases_on_fund_source_id", using: :btree
+  add_index "fundable_phases", ["project_phase_id"], name: "index_fundable_phases_on_project_phase_id", using: :btree
+
+  create_table "fundable_projects", force: :cascade do |t|
+    t.integer  "project_id",     limit: 4
+    t.integer  "fund_source_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "fundable_projects", ["fund_source_id"], name: "index_fundable_projects_on_fund_source_id", using: :btree
+  add_index "fundable_projects", ["project_id"], name: "index_fundable_projects_on_project_id", using: :btree
 
   create_table "project_components", force: :cascade do |t|
     t.integer  "project_id",                limit: 4
@@ -197,6 +227,12 @@ ActiveRecord::Schema.define(version: 20150604093304) do
 
   add_foreign_key "can_edits", "universities"
   add_foreign_key "can_edits", "users"
+  add_foreign_key "fundable_components", "fund_sources"
+  add_foreign_key "fundable_components", "project_components"
+  add_foreign_key "fundable_phases", "fund_sources"
+  add_foreign_key "fundable_phases", "project_phases"
+  add_foreign_key "fundable_projects", "fund_sources"
+  add_foreign_key "fundable_projects", "projects"
   add_foreign_key "project_components", "projects"
   add_foreign_key "project_phases", "projects"
   add_foreign_key "projects", "universities"

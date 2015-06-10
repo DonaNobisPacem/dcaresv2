@@ -1,8 +1,5 @@
 <br>
 <div class="jumbotron">
-	<h1>Under Construction!</h1>
-</div>
-<div class="row">
 <%= search_form_for @q, url: search_analytics_static_pages_path do |f| %>
 	<div class="row">
   		<div class="col-xs-4">
@@ -16,10 +13,14 @@
   		</div>
   	</div>
   	<div class="row">
-  		<div class="col-xs-12">
+  		<div class="col-xs-6">
   			<%= f.input :university_id_in, :collection => University.all.order(:university_name), :label_method => :university_name, :include_blank => true, :label => "Project of:", required: false %>
   		</div>
+  		<div class="col-xs-6">
+  			<%= f.input :fund_sources_id_in, :collection => FundSource.all.order(:source_name), :label_method => :source_name, :include_blank => true, :label => "Source of fund/s:", required: false %>
+  		</div>
   	</div>
+  	
   <%= f.button :submit, :class => "btn btn-success pull-right" %>
 <% end %>
 </div>
@@ -27,17 +28,27 @@
 <div class="col-xs-12">
 	<div class="panel panel-info">
 		<div class="panel-heading">
-			<h3>Number of Projects: <%= @projects.count %></h3>	
+			<h3>Number of Projects: <%= @output.count %></h3>	
 		</div>
 		<div class="panel-body">
+			<b><u>Sorted by CU:</u></b><br>
+			<% @group_by_cu = @output.group_by { |x| x[:university_id] }%>
+			<%= pie_chart @group_by_cu.map {|k,v| [University.find(k).university_name, v.length]} %>
+			<b><u>Sorted by status:</u></b><br>
 			<%= pie_chart ({
-				"Completed Projects" => @projects.where(:status => "1").count,
-				"Ongoing Projects" => @projects.where(:status => "2").count,
-				"Delayed Projects" => @projects.where(:status => "3").count,
-				"Terminated Projects" => @projects.where(:status => "4").count,
-				"Projects on Bidding Stage" => @projects.where(:status => "5").count,
-				"Projects on Proposal Stage" => @projects.where(:status => "6").count
+				"Completed Projects" => @output.where(:status => "1").count,
+				"Ongoing Projects" => @output.where(:status => "2").count,
+				"Delayed Projects" => @output.where(:status => "3").count,
+				"Terminated Projects" => @output.where(:status => "4").count,
+				"Projects on Bidding Stage" => @output.where(:status => "5").count,
+				"Projects on Proposal Stage" => @output.where(:status => "6").count
 				}) %>
+			<b><u>Sorted by Fund Source:</u></b><br>
+			<%= pie_chart @output.joins(:fund_sources).group("fund_sources.source_name").count %>
+			<b><u>Sorted by Budget:</u></b><br>
+			<b><li>Total: PhP <%= @output.sum(:financial_budget) %></li></b><br>
+			<%= pie_chart @output.group(:project_name).sum(:financial_budget) %>
+			<%= render 'shared/projects_list' %>
 		</div>
 	</div>
 </div>

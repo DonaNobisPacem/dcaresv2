@@ -4,12 +4,14 @@ class Project < ActiveRecord::Base
 	validates :project_code, presence: true, uniqueness: true
 	validates :university_id, presence: true
 
-	has_many :project_images
-	has_many :project_components
-	has_many :project_phases
+	has_many :project_images, :dependent => :destroy
+	has_many :project_components, :dependent => :destroy
+	has_many :project_phases, :dependent => :destroy
 
-	has_many :contractors, as: :contractable
-	has_many :fund_sources, as: :fundable
+	#has_many :contractors, as: :contractable
+	#has_many :fund_sources, as: :fundable
+	has_many :fundable_projects
+  	has_many :fund_sources, through: :fundable_projects
 
 	validate :project_images_count_within_bounds
 	accepts_nested_attributes_for :project_images, :project_components, :project_phases, :fund_sources
