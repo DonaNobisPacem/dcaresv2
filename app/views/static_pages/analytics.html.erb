@@ -46,9 +46,10 @@
 			<b><u>Sorted by Fund Source:</u></b><br>
 			<%= pie_chart @output.joins(:fund_sources).group("fund_sources.source_name").count %>
 			<b><u>Sorted by Budget:</u></b><br>
-			<b><li>Total: PhP <%= @output.sum(:financial_budget) %></li></b><br>
+			<b><li>Total (PhP): <%= number_with_precision( @output.sum(:financial_budget), precision: 2, delimiter: ',' ) %></li></b><br>
 			<%= pie_chart @output.group(:project_name).sum(:financial_budget) %>
 			<%= render 'shared/projects_list' %>
 		</div>
 	</div>
 </div>
+
