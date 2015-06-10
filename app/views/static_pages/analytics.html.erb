@@ -1,0 +1,43 @@
+<br>
+<div class="jumbotron">
+	<h1>Under Construction!</h1>
+</div>
+<div class="row">
+<%= search_form_for @q, url: search_analytics_static_pages_path do |f| %>
+	<div class="row">
+  		<div class="col-xs-4">
+  			<%= f.input :status_eq, :collection => ProjectStatus.all, :label_method => :description, :include_blank => true, :label => "Project Status", required: false %>
+  		</div>
+  		<div class="col-xs-4">
+  			<%= f.input :timeline_actual_end_gteq, :label => "From Completion Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY", required: false %>
+  		</div>
+  		<div class="col-xs-4">
+  			<%= f.input :timeline_actual_end_lteq, :label => "To Completion Date:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY", required: false %>
+  		</div>
+  	</div>
+  	<div class="row">
+  		<div class="col-xs-12">
+  			<%= f.input :university_id_in, :collection => University.all.order(:university_name), :label_method => :university_name, :include_blank => true, :label => "Project of:", required: false %>
+  		</div>
+  	</div>
+  <%= f.button :submit, :class => "btn btn-success pull-right" %>
+<% end %>
+</div>
+
+<div class="col-xs-12">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3>Number of Projects: <%= @projects.count %></h3>	
+		</div>
+		<div class="panel-body">
+			<%= pie_chart ({
+				"Completed Projects" => @projects.where(:status => "1").count,
+				"Ongoing Projects" => @projects.where(:status => "2").count,
+				"Delayed Projects" => @projects.where(:status => "3").count,
+				"Terminated Projects" => @projects.where(:status => "4").count,
+				"Projects on Bidding Stage" => @projects.where(:status => "5").count,
+				"Projects on Proposal Stage" => @projects.where(:status => "6").count
+				}) %>
+		</div>
+	</div>
+</div>

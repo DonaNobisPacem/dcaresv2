@@ -18,7 +18,17 @@ class StaticPagesController < ApplicationController
 		@projects = @q.result
 	end
 
-	def filter
+	def analytics
+		@q = Project.ransack(params[:q])
+		@projects = @q.result
+	end
+
+	def search_analytics
+		analytics
+		render :analytics
+	end
+
+	def search_report
 		report
 		render :report
 	end

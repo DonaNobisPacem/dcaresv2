@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/admin_panel' => 'static_pages#admin_panel'
   get '/report' => 'static_pages#report'
   get '/result' => 'static_pages#result'
+  get '/analytics' => 'static_pages#analytics'
 
   devise_for :users
   resources :projects do
@@ -20,7 +21,8 @@ Rails.application.routes.draw do
   resources :static_pages do
     collection do
       match 'search' => 'static_pages#search', via: [:get, :post], as: :search
-      match 'filter' => 'static_pages#filter', via: [:get, :post], as: :filter
+      match 'search_report' => 'static_pages#search_report', via: [:get, :post], as: :search_report
+      match 'search_analytics' => 'static_pages#search_analytics', via: [:get, :post], as: :search_analytics
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

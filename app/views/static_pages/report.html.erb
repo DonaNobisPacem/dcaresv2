@@ -1,6 +1,6 @@
 <br>
 <div class="row">
-<%= search_form_for @q, url: filter_static_pages_path do |f| %>
+<%= search_form_for @q, url: search_report_static_pages_path do |f| %>
 	<div class="row">
   		<div class="col-xs-4">
   			<%= f.input :status_eq, :collection => ProjectStatus.all, :label_method => :description, :include_blank => true, :label => "Project Status", required: false %>

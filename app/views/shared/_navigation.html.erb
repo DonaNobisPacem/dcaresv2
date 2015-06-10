@@ -30,6 +30,11 @@
 						  	<i class="fa fa-print"></i> Reports
 						<% end %>
 					</li>
+					<li>
+			      		<%= link_to analytics_path do %>
+						  	<i class="fa fa-print"></i> Analytics
+						<% end %>
+					</li>
 					<% if current_user.admin %>
 						<li> <%=link_to '<i class="fa fa-user-plus"></i> Admin Panel'.html_safe, admin_panel_path %> </li>
 					<% end %>

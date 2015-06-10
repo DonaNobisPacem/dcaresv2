@@ -78,6 +78,9 @@ gem 'acts_as_xlsx'
 gem 'axlsx_rails'
 gem 'roo'
 
+# Charts
+gem 'chartkick'
+
 # Search + Filtering 
 gem 'ransack'
 
