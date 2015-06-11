@@ -24,7 +24,7 @@
 	 	<div class="pull-right">
 			<%= link_to 'Edit', edit_project_project_phase_path(@project_phase.project, @project_phase) %> |
 			<%= link_to 'Destroy', project_project_phase_path(@project_phase.project, @project_phase), method: :delete, data: { confirm: 'Are you sure?' } %> |
-			<%= link_to 'Back', :back %>
+			<%= link_to 'Back', "javascript:history.back()" %>
 		</div>
  	</div>
  </div>

@@ -129,7 +129,7 @@
 				<%= link_to 'Edit', edit_project_path(@project) %> |
 				<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
 			<% end %>
-			<%= link_to 'Back', :back %>
+			<%= link_to 'Back', "javascript:history.back()" %>
 		</div>
  	</div>
  </div>

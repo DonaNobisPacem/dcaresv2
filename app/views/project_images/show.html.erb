@@ -13,7 +13,7 @@
 	<div class="pull-right">	
 		<%= link_to 'Edit', edit_project_project_image_path(@project_image.project, @project_image) %> |
 		<%= link_to "Remove", project_project_image_path( @project_image.project, @project_image), data: { confirm: 'Delete this image?' }, :method => :delete %> |
-		<%= link_to 'Back', :back %>
+		<%= link_to 'Back', "javascript:history.back()" %>
 	</div>
 </div>
 
