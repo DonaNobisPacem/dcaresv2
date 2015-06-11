@@ -57,4 +57,13 @@ namespace :projects do
 			project.save!
 		end
 	end
+
+	desc "Hide components and phases if blank"
+	task :change_hidden => :environment do
+		Project.find_each do |project|
+			project.has_components = false if project.project_components.blank?
+			project.has_phases = false if project.project_phases.blank?
+			project.save!
+		end
+	end
 end
