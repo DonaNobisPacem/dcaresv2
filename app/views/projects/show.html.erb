@@ -5,7 +5,13 @@
 	</div>
 	<div class="panel-body">
 		<p id="notice"><%= notice %></p>
-
+		<p class="text-right">
+	 		<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
+				<%= link_to 'Edit', edit_project_path(@project) %> |
+				<%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } %> |
+			<% end %>
+			<%= link_to 'Back', "javascript:history.back()" %>
+		</p>
 		<%= render 'shared/project_shared_panels', :project => @project %>
 
 		<% if @project.has_components %>
@@ -127,7 +133,7 @@
 	 	<div class="pull-right">
 	 		<% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
 				<%= link_to 'Edit', edit_project_path(@project) %> |
-				<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+				<%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure you want to delete this project?' } %> |
 			<% end %>
 			<%= link_to 'Back', "javascript:history.back()" %>
 		</div>

@@ -137,8 +137,10 @@ CanEdit.create!([
   {user_id: 33, university_id: 10}
 ])
 FundSource.create!([
+      {:source_name => "2011 GAA-CO Budget"},
       {:source_name => "2012 Academic Program Improvement (API)"},
       {:source_name => "2012 CHED-DAP Funding"},
+      {:source_name => "2012 GAA-CO Budget"},
       {:source_name => "2012 PAEP's Initiative"},
       {:source_name => "2013 Academic Program Improvement (API)"},
       {:source_name => "2013 GAA-CO Budget"},

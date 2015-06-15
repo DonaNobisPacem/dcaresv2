@@ -15,7 +15,7 @@
 		</div>
 		<p class="text-right">
 			<%= link_to 'Edit', edit_project_project_image_path(@project_image.project, @project_image) %> |
-			<%= link_to "Remove", project_project_image_path( @project_image.project, @project_image), data: { confirm: 'Delete this image?' }, :method => :delete %> |
+			<%= link_to "Delete", project_project_image_path( @project_image.project, @project_image), data: { confirm: 'Are you sure you want to delete this image?' }, :method => :delete %> |
 			<%= link_to 'Back', "javascript:history.back()" %>
 		</p>
 	</div>

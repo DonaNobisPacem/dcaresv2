@@ -23,7 +23,7 @@
 
 	 	<div class="pull-right">
 			<%= link_to 'Edit', edit_project_project_component_path(@project_component.project, @project_component) %> |
-			<%= link_to 'Destroy', project_project_component_path(@project_component.project, @project_component), method: :delete, data: { confirm: 'Are you sure?' } %> |
+			<%= link_to 'Delete', project_project_component_path(@project_component.project, @project_component), method: :delete, data: { confirm: 'Are you sure you want to delete this project component?' } %> |
 			<%= link_to 'Back', "javascript:history.back()" %>
 		</div>
  	</div>
