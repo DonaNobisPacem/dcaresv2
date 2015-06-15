@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<div class="well col-xs-12 text-center">
-	<%= link_to image_tag(@project_image.image_url(:view)), @project_image.image_url, :target => "_blank" %>
-
-	<div class="pull-left">
-		<p>
-		  <strong>Description:</strong>
-		  <%= @project_image.description %>
-		</p>
+<div class="panel panel-info">
+	<div class="panel-body text-center">
+		<%= link_to image_tag(@project_image.image_url(:view)), @project_image.image_url, :target => "_blank" %>
 	</div>
-	<br><br>
-	<div class="pull-right">	
-		<%= link_to 'Edit', edit_project_project_image_path(@project_image.project, @project_image) %> |
-		<%= link_to "Remove", project_project_image_path( @project_image.project, @project_image), data: { confirm: 'Delete this image?' }, :method => :delete %> |
-		<%= link_to 'Back', "javascript:history.back()" %>
+	<div class="panel-footer">
+		<div class="container">
+			<div class="row">
+				<strong>Project Image of <%= link_to @project_image.project.project_name, @project_image.project %></strong>
+				<br>
+				<strong>Description:</strong> <%= @project_image.description %>
+			</div>
+			<br>
+		</div>
+		<p class="text-right">
+			<%= link_to 'Edit', edit_project_project_image_path(@project_image.project, @project_image) %> |
+			<%= link_to "Remove", project_project_image_path( @project_image.project, @project_image), data: { confirm: 'Delete this image?' }, :method => :delete %> |
+			<%= link_to 'Back', "javascript:history.back()" %>
+		</p>
 	</div>
 </div>
 
