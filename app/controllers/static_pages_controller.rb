@@ -10,7 +10,8 @@ class StaticPagesController < ApplicationController
 	end
 
 	def admin_panel
-		@users = User.paginate(:page => params[:page], :per_page => 30)
+		@q = User.ransack(params[:q])
+		@users = @q.result.paginate(:page => params[:page], :per_page => 15)
 	end
 
 	def report
@@ -22,6 +23,11 @@ class StaticPagesController < ApplicationController
 		@q = Project.ransack(params[:q])
 		@output = @q.result
 		@projects = @output.paginate(:page => params[:page], :per_page => 10)
+	end
+
+	def search_users
+		admin_panel
+		render :admin_panel
 	end
 
 	def search_analytics

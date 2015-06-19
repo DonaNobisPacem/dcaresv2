@@ -1,4 +1,26 @@
 <h1><b>Administrator Panel</b></h1>
+<div class="jumbotron">
+<%= search_form_for @q, url: search_users_static_pages_path do |f| %>
+	<div class="row">
+  		<div class="col-xs-6">
+  			<%= f.input :first_name_cont, :label => "First Name", required: false %>
+  		</div>
+  		<div class="col-xs-6">
+  			<%= f.input :last_name_cont, :label => "Last Name", required: false %>
+  		</div>
+  		<div class="col-xs-6">
+  			<%= f.input :email_cont, :label => "Email", required: false %>
+  		</div>
+  		<div class="col-xs-3">
+  			<%= f.input :admin_eq, :label => "Is Admin?", as: :select, required: false %>
+  		</div>
+  		<div class="col-xs-3">
+  			<%= f.input :approved_eq, :label => "Is Approved?", as: :select, required: false %>
+  		</div>
+  	</div>
+ 	<%= f.button :submit, :class => "btn btn-success pull-right" %>
+<% end %>
+</div>
 <div class="row">
 	<div class="col-xs-12">
 		<%= link_to '<i class="fa fa-user-plus"></i> Create new user'.html_safe, new_user_path, :class => "pull-right" %>

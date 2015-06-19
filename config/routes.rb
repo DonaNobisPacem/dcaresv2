@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       match 'search' => 'static_pages#search', via: [:get, :post], as: :search
       match 'search_report' => 'static_pages#search_report', via: [:get, :post], as: :search_report
       match 'search_analytics' => 'static_pages#search_analytics', via: [:get, :post], as: :search_analytics
+      match 'search_users' => 'static_pages#search_users', via: [:get, :post], as: :search_users
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
