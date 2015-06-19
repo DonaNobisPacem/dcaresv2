@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :project_components
     resources :project_images
   end
-  resources :users
+  resources :users, except: :create
   resources :universities do
     collection do
       match 'search' => 'universities#search', via: [:get, :post], as: :search
