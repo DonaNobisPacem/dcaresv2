@@ -1,0 +1,12 @@
+This is a weekly notification from <%= link_to "OVPDCARES", @url %>. Please do not reply to this email.
+===================================================
+
+Greetings <%= @user.email %>,
+
+We have noticed that the following projects have not been updated for quite some time. OVPDCares is only as good as the updated information it contains. As such, we would like to remind our users to provide project-related information in a timely manner.
+
+Project Code | Project Title | Last Updated
+<% @projects.each do |project| %>
+	<%= project.project_code %> | <%= project.project_name %> | <%= (Date.today - project.updated_at.to_date).to_i %>
+<% end %>
+

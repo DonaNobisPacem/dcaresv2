@@ -84,4 +84,10 @@ gem 'chartkick'
 # Search + Filtering 
 gem 'ransack'
 
+# Secret Keys
+gem 'figaro'
+
+# Scheduled tasks
+gem 'whenever'
+
 gem 'seed_dump'
