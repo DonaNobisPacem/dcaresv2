@@ -18,16 +18,17 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
+env :PATH, ENV['PATH']
 
 set :output, {:error => "#{path}/log/cron_error_log.log", :standard => "#{path}/log/cron_log.log"}
 
-every 1.minute do
-    command "date"
-end
-
-every 5.minutes do
-	rake "notifications:test_send_email"
-end
+# every 1.minute do
+#     command "date"
+# end
+# 
+# every 5.minutes do
+# 	rake "notifications:test_send_email"
+# end
 
 every :monday, :at => "6am" do
 	rake "notifications:send_email"
