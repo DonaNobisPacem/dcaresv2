@@ -9,4 +9,9 @@ namespace :notifications do
       end
     end
   end
+
+  desc "Test sending email in production"
+  task :test_send_email => :environment do
+    UserMailer.hello_world.deliver_later 
+  end
 end

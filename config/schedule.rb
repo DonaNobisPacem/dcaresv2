@@ -19,6 +19,10 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# every :monday, at => "6am" do
-# 	rake "notifications:send_email"
-# end
+every 5.minutes do
+	rake "notifications:test_send_email"
+end
+
+every :monday, at => "6am" do
+	rake "notifications:send_email"
+end
