@@ -7,6 +7,6 @@ We have noticed that the following projects have not been updated for quite some
 
 Project Code | Project Title | Last Updated
 <% @projects.each do |project| %>
-	<%= project.project_code %> | <%= project.project_name %> | <%= (Date.today - project.updated_at.to_date).to_i %>
+	<%= project.project_code %> | <%= project.project_name %> | <%= (Date.today - project.updated_at.to_date).to_i %> days ago
 <% end %>
 

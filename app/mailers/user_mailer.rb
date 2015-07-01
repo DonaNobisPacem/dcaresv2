@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-	default from: 'jddulay@up.edu.ph'
+	default from: 'info.ovpd@up.edu.ph'
 	
 	def hello_world
 		mail(to: 'johnthomasraphael@yahoo.com', subject: 'I emailed from AmazonSES!')

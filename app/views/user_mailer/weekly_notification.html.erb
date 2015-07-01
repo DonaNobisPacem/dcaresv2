@@ -23,7 +23,7 @@
           <tr>
             <td><%= project.project_code %></td>
             <td><%= project.project_name %></td>
-            <td><%= (Date.today - project.updated_at.to_date).to_i %></td>
+            <td><%= (Date.today - project.updated_at.to_date).to_i %> days ago</td>
           </tr>
         <% end %>
       </tbody>
