@@ -5,7 +5,9 @@ namespace :notifications do
       if user.admin
         UserMailer.admin_notification(user).deliver_later
       else
-        UserMailer.weekly_notification(user).deliver_later
+        if user.universities.present?
+          UserMailer.weekly_notification(user).deliver_later
+        end
       end
     end
   end
