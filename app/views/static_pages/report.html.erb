@@ -49,16 +49,24 @@
 			<div class="col-xs-12">
 				<div class="well">
 					<div class="row">
-						<div class="col-xs-2">
+						<div class="col-xs-4">
 							Project Code:<br>
 							<b><%= project.project_code %></b>
-						</div>
-						<div class="col-xs-5">
+							<br><br>
 							Project Title:<br>
 							<b><%= project.project_name %></b>
 						</div>
-						<div class="col-xs-3">
-							Date of Completion:<br>
+						<div class="col-xs-6">
+							Date of Notice of Award:
+							<b><%= project.bidding_award.strftime("%d %B %Y") if project.bidding_award %></b>
+							<br>
+							Date of Notice to Proceed:
+							<b><%= project.bidding_proceed.strftime("%d %B %Y") if project.bidding_proceed %></b>
+							<br>
+							Period between NoA and NtP (in Calendar Days):
+							<b><%= (project.bidding_proceed.to_date - project.bidding_award.to_date).to_i.to_s + " days" if project.bidding_award.present? && project.bidding_proceed.present? %></b>
+							<br><br>
+							Date of Completion:
 							<b><%= project.timeline_actual_end.try(:strftime, "%d %B %Y") %></b>
 						</div>
 						<div class="col-xs-2">
