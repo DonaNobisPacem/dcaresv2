@@ -6,10 +6,12 @@ class UserMailer < ApplicationMailer
 	end
 
 	def weekly_notification(user)
-		@user = user
-		@url = "http://52.74.232.161/"
-		@projects = Project.where( :university_id => @user.universities.first.id ).where( :status => 2..3 ).where( "updated_at < ?", 7.days.ago )
-		mail(to: @user.email , subject: 'Weekly notification from OVPDCARES')
+		if user.universities.present?
+			@user = user
+			@url = "http://52.74.232.161/"
+			@projects = Project.where( :university_id => @user.universities.first.id ).where( :status => 2..3 ).where( "updated_at < ?", 7.days.ago )
+			mail(to: @user.email , subject: 'Weekly notification from OVPDCARES')
+		end
 	end
 
 	def admin_notification(user)
