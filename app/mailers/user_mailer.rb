@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
 		if user.universities.present?
 			@user = user
 			@url = "http://52.74.232.161/"
-			@projects = Project.where( :university_id => @user.universities.first.id ).where( :status => 2..3 ).where( "updated_at < ?", 7.days.ago )
+			@projects = Project.where( :university_id => @user.universities.first.id ).where( :status => 2 ).where( "updated_at < ?", 7.days.ago )
 			mail(to: @user.email , subject: 'Weekly notification from OVPDCARES')
 		end
 	end
