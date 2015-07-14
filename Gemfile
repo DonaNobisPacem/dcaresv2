@@ -67,6 +67,7 @@ gem 'devise'
 # File upload + handling
 gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+gem 'file_validators'
 
 # Pagination
 gem 'will_paginate'

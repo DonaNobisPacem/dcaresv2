@@ -32,6 +32,6 @@ class Project < ActiveRecord::Base
 	private
 		def project_images_count_within_bounds
 	    	return if project_images.blank?
-	    	errors.add(:project_images, "The project has raeched its image limit.") if project_images.size > 15
+	    	errors.add(:project_images, "The project has reached its image limit.") if project_images.size > 15
 		end
 end

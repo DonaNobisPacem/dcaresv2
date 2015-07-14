@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+  class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   # GET /projects
@@ -36,7 +36,9 @@ class ProjectsController < ApplicationController
       if @project.save
         if params[:project_images]
           params[:project_images].each do |a|
-            @project_image = @project.project_images.create!(:image => a, :project_id => @project.id)
+            unless @project.project_images.count > 15
+              @project_image = @project.project_images.create(:image => a, :project_id => @project.id)
+            end
           end
         end
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -55,7 +57,9 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         if params[:project_images]
           params[:project_images].each do |a|
-            @project_image = @project.project_images.create!(:image => a, :project_id => @project.id)
+            unless @project.project_images.count > 15
+              @project_image = @project.project_images.create(:image => a, :project_id => @project.id)
+            end
           end
         end
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
