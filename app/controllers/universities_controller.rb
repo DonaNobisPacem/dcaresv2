@@ -13,6 +13,7 @@ class UniversitiesController < ApplicationController
   	#@projects = Project.where(:university_id => @university.id).paginate(:page => params[:page], :per_page => 10)
     @q = Project.where(:university_id => @university.id).ransack(params[:q])
     @projects = @q.result.paginate(:page => params[:page], :per_page => 10)
+    @projects_list = Project.where(:university_id => @university.id)
     respond_to do |format|
       format.html
       format.xlsx {
