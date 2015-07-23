@@ -1,3 +1,5 @@
+require 'api_constraints'
+
 Rails.application.routes.draw do
   root 'static_pages#home'
 
@@ -28,7 +30,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    scope module: :v1 do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :universities, only: [:index, :show]
       resources :projects, only: [:index, :show]
       resources :project_components, only: [:index, :show]

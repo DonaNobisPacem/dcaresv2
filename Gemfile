@@ -55,8 +55,6 @@ group :development, :test do
   gem 'ffaker'
 end
 
-
-
 # Form Helpers
 gem 'cocoon'
 gem 'simple_form'
