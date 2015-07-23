@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    namespace :v1 do
+    scope module: :v1 do
       resources :universities, only: [:index, :show]
       resources :projects, only: [:index, :show]
       resources :project_components, only: [:index, :show]
