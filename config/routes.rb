@@ -32,10 +32,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :universities, only: [:index, :show]
-      resources :projects, only: [:index, :show]
-      resources :project_components, only: [:index, :show]
-      resources :project_phases, only: [:index, :show]
-      resources :project_images, only: [:index, :show]
+      resources :projects, only: [:index, :show] do
+        resources :project_components, only: [:index, :show]
+        resources :project_phases, only: [:index, :show]
+        resources :project_images, only: [:index, :show]
+      end
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.
