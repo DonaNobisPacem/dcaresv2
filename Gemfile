@@ -48,7 +48,14 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-passenger'
+
+  # Test modules
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
 end
+
+
 
 # Form Helpers
 gem 'cocoon'
@@ -91,4 +98,7 @@ gem 'figaro'
 # Scheduled tasks
 gem 'whenever'
 
+# API Helpers
+gem 'rabl-rails'
+# Database dumping
 gem 'seed_dump'
