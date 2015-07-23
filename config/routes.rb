@@ -26,6 +26,16 @@ Rails.application.routes.draw do
       match 'search_users' => 'static_pages#search_users', via: [:get, :post], as: :search_users
     end
   end
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :universities, only: [:index, :show]
+      resources :projects, only: [:index, :show]
+      resources :project_components, only: [:index, :show]
+      resources :project_phases, only: [:index, :show]
+      resources :project_images, only: [:index, :show]
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
