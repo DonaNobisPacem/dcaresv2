@@ -1,14 +1,16 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   before_action :set_project, only: [:show]
-  respond_to :json, :xml
+  caches :index, :show, caches_for: 5.minutes
 
   def index
-    @projects = Project.all
-    respond_with(@projects)
+    expose Project.paginate(:page => params[:page])
   end
 
   def show
-    respond_with(@project)
+    expose({ 
+      project: @project, 
+      project_components: @project.project_components
+    })
   end
 
   private

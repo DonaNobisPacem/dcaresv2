@@ -98,5 +98,7 @@ gem 'whenever'
 
 # API Helpers
 gem 'rabl-rails'
+gem 'rocket_pants'
+
 # Database dumping
 gem 'seed_dump'

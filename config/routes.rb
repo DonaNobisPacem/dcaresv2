@@ -29,8 +29,9 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :api, defaults: { format: :json } do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+  namespace :api do
+    api version: 1, module: 'v1' do
+      resources :sessions, only: [:create]
       resources :universities, only: [:index, :show]
       resources :projects, only: [:index, :show] do
         resources :project_components, only: [:index, :show]

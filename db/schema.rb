@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610083510) do
+ActiveRecord::Schema.define(version: 20150728075240) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -220,8 +220,10 @@ ActiveRecord::Schema.define(version: 20150610083510) do
     t.string   "first_name",             limit: 255
     t.string   "last_name",              limit: 255
     t.integer  "designation",            limit: 4
+    t.string   "auth_token",             limit: 255
   end
 
+  add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 

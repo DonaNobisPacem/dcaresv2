@@ -5,7 +5,7 @@ class Api::V1::ProjectComponentsController < Api::V1::BaseController
   def index
     @project = Project.find(params[:project_id])
     @project_components = @project.project_components.paginate(:page => params[:page], :per_page => 10)
-    responds_with(@project_components)
+    respond_with(@project_components)
   end
 
   def show

@@ -17,4 +17,13 @@ class User < ActiveRecord::Base
       super # Use whatever other message 
     end 
   end
+
+  def generate_auth_token
+    loop do
+      self.auth_token = SecureRandom.hex
+      return unless self.class.exists?(auth_token: auth_token)
+    end
+    save!
+    auth_token
+  end
 end
