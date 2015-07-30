@@ -10,7 +10,7 @@ class Project < ActiveRecord::Base
 
 	#has_many :contractors, as: :contractable
 	#has_many :fund_sources, as: :fundable
-	has_many :fundable_projects
+	has_many :fundable_projects, :dependent => :destroy
   	has_many :fund_sources, through: :fundable_projects
 
 	validate :project_images_count_within_bounds
