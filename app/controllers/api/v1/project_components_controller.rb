@@ -1,20 +1,19 @@
 class Api::V1::ProjectComponentsController < Api::V1::BaseController
-  before_action :set_project, only: [:show]
-  respond_to :json, :xml
+  before_action :set_project_component, only: [:show]
+  caches :index, :show, caches_for: 5.minutes
 
   def index
-    @project = Project.find(params[:project_id])
-    @project_components = @project.project_components.paginate(:page => params[:page], :per_page => 10)
-    respond_with(@project_components)
+    expose ProjectComponent.paginate(:page => params[:page])
   end
 
   def show
-    respond_with(@project_component)
+    expose @project_component
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_project
+    def set_project_component
       @project_component = ProjectComponent.find(params[:id])
     end
 end

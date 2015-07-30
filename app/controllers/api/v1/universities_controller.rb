@@ -7,7 +7,7 @@ class Api::V1::UniversitiesController < Api::V1::BaseController
   end
 
   def show
-    respond_with(@university)
+    expose @university
   end
 
   private
