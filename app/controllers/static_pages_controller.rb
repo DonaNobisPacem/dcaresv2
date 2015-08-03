@@ -17,6 +17,12 @@ class StaticPagesController < ApplicationController
 	def report
 		@q = Project.ransack(params[:q])
 		@projects = @q.result
+		respond_to do |format|
+	      format.html
+	      format.xlsx {
+	        render xlsx: "report", filename: "reports.xlsx"
+	      }
+	    end
 	end
 
 	def analytics
@@ -36,7 +42,8 @@ class StaticPagesController < ApplicationController
 	end
 
 	def search_report
-		report
+		@q = Project.ransack(params[:q])
+		@projects = @q.result
 		render :report
 	end
 

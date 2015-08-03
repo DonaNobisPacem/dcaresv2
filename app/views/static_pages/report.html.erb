@@ -24,7 +24,9 @@
 <% end %>
 </div>
 <br>
-<% if params[:q] && @projects.count > 0 %>
+
+<%= link_to 'Export to Excel', report_path(params.merge(format: "xlsx")), :class => "pull-right" %>
+<% if params[:q] && @projects.count > 0 %>	
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="jumbotron">
