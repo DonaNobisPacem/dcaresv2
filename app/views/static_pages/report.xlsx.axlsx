@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Reports") do |sheet|
-    sheet.add_row ["Project Code", "Project Title", "Status", "Percentage Completion", "Date of Completion", "Budget (PhP)", "Source of funding"]
+    sheet.add_row ["Project Code", "Project Title", "Status", "Date Last Updated", "Percentage Completion", "Date of Completion", "Budget (PhP)", "Source of funding"]
     @projects.each do |project|
     	@source_of_funds = ""
     	project.fund_sources.each do |source|
@@ -8,6 +8,6 @@ wb.add_worksheet(name: "Reports") do |sheet|
     	end
     	@source_of_funds = @source_of_funds + project.financial_source.to_s
         status = ProjectStatus.find( project.status ).description
-        sheet.add_row [project.project_code, project.project_name, status, project.percent_accomplishment, project.timeline_actual_end.try(:strftime, "%d %B %Y"), project.financial_budget, @source_of_funds]        
+        sheet.add_row [project.project_code, project.project_name, status, project.updated_at.try(:strftime, "%d %B %Y"), project.percent_accomplishment, project.timeline_actual_end.try(:strftime, "%d %B %Y"), project.financial_budget, @source_of_funds]        
     end
 end
