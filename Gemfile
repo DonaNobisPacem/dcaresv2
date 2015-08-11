@@ -88,7 +88,7 @@ gem 'roo'
 gem 'chartkick'
 
 # Search + Filtering 
-gem 'ransack'
+gem 'ransack', :git => "git://github.com/activerecord-hackery/ransack.git"
 
 # Secret Keys
 gem 'figaro'

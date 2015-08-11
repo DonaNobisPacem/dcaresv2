@@ -10,7 +10,7 @@
 
     <p>We have noticed that the following projects have not been updated for quite some time. OVPDCares is only as good as the updated information it contains. As such, we would like to remind our users to provide project-related information in a timely manner.</p>
 
-    <table>
+    <table style="border-spacing: 0; border-collapse: collapse;">
       <thead>
         <tr>
           <th>Project Code</th>
@@ -21,12 +21,53 @@
       <tbody>
         <% @projects.each do |project| %>
           <tr>
-            <td><%= project.project_code %></td>
-            <td><%= project.project_name %></td>
-            <td><%= (Date.today - project.updated_at.to_date).to_i %> days ago</td>
+            <td style="border:solid 1px black"><%= project.project_code %></td>
+            <td style="border:solid 1px black"><%= project.project_name %></td>
+            <td style="border:solid 1px black"><%= (Date.today - project.updated_at.to_date).to_i %> days ago</td>
           </tr>
         <% end %>
       </tbody>
     </table>
+
+    <% if @completed_but_incomplete_projects.present? %>
+      <p>Additionally, we noticed that some projects tagged as <b>Completed</b> have fields which do not reflect the necessary information. Please provide the pertinent information for the following projects:</p>
+      <table style="border-spacing: 0; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Project Code</th>
+          <th>Project Name</th>
+          <th>Missing Field/s</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @completed_but_incomplete_projects.each do |project| %>
+          <tr>
+            <td style="border:solid 1px black"><%= project.project_code %></td>
+            <td style="border:solid 1px black"><%= project.project_name %></td>
+            <td style="border:solid 1px black">              
+              <%= h("Date Completed \n").gsub(/\n/, '<br/>').html_safe if project.completed_by.blank? %>
+              <%= h("Description \n").gsub(/\n/, '<br/>').html_safe if project.description.blank? %>
+              <%= h("Expected Outcome \n").gsub(/\n/, '<br/>').html_safe if project.expected_outcome.blank? %>
+              <%= h("End User/s \n").gsub(/\n/, '<br/>').html_safe if project.end_user.blank? %>
+              <%= h("Contractor/s \n").gsub(/\n/, '<br/>').html_safe if project.bidding_contractor.blank? %>
+              <%= h("Number of Biddings \n").gsub(/\n/, '<br/>').html_safe if project.bidding_number.blank? %>
+              <%= h("Date of NoA \n").gsub(/\n/, '<br/>').html_safe if project.bidding_award.blank? %>
+              <%= h("Date of NtP \n").gsub(/\n/, '<br/>').html_safe if project.bidding_proceed.blank? %>
+              <%= h("Source of Funds \n").gsub(/\n/, '<br/>').html_safe if project.fund_sources.blank? %>
+              <%= h("Budget \n").gsub(/\n/, '<br/>').html_safe if project.financial_budget.blank? %>
+              <%= h("Contract Price \n").gsub(/\n/, '<br/>').html_safe if project.financial_contract_price.blank? %>
+              <%= h("Actual Cost \n").gsub(/\n/, '<br/>').html_safe if project.financial_actual_cost.blank? %>
+              <%= h("Target Start Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_target_start.blank? %>
+              <%= h("Target Completion Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_target_end.blank? %>
+              <%= h("Actual Start Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_actual_start.blank? %>
+              <%= h("Actual Completion Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_actual_end.blank? %>
+              <%= h("Project Duration \n").gsub(/\n/, '<br/>').html_safe if project.timeline_duration.blank? %>
+              <%= h("Project Extension \n").gsub(/\n/, '<br/>').html_safe if project.timeline_extension.blank? %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
   </body>
 </html>
