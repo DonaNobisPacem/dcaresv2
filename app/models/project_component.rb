@@ -18,4 +18,10 @@ class ProjectComponent < ActiveRecord::Base
 			end
 		end
 	end
+
+	def get_duration
+		if timeline_actual_start.present? && timeline_actual_end.present?
+			return (timeline_actual_end.to_date - timeline_actual_start.to_date).to_i
+		end
+	end
 end

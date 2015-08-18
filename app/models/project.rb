@@ -29,6 +29,12 @@ class Project < ActiveRecord::Base
 		end
 	end
 
+	def get_duration
+		if timeline_actual_start.present? && timeline_actual_end.present?
+			return (timeline_actual_end.to_date - timeline_actual_start.to_date).to_i
+		end
+	end
+
 	private
 		def project_images_count_within_bounds
 	    	return if project_images.blank?

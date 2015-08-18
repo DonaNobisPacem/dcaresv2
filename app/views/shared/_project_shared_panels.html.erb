@@ -111,7 +111,7 @@
 			<b>Target Completion Date: </b><%= project.timeline_target_end.strftime("%d %B %Y") if project.timeline_target_end %><br>
 			<b>Actual Start Date: </b><%= project.timeline_actual_start.strftime("%d %B %Y") if project.timeline_actual_start %><br>
 			<b>Actual Completion Date: </b><%= project.timeline_actual_end.strftime("%d %B %Y") if project.timeline_actual_end %><br>
-			<b>Project Duration (in Calendar Days): </b><%= project.timeline_duration.to_s + " days" if project.timeline_duration.present? %><br>
+			<b>Project Duration (in Calendar Days): </b><%= project.get_duration.to_s + " days" if project.get_duration.present? %><br>
 			<b>Project Extension (in Calendar Days): </b><%= project.timeline_extension.to_s + " days" if project.timeline_extension.present? %><br>
 		</div>
 		<br>
