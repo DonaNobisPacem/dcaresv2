@@ -3,7 +3,7 @@ class Api::V1::UniversitiesController < Api::V1::BaseController
   caches :index, :show, caches_for: 5.minutes
 
   def index
-    expose University.paginate(:page => params[:page], :per_page => 10)
+    expose University.all
   end
 
   def show

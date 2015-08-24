@@ -3,7 +3,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   caches :index, :show, caches_for: 5.minutes
 
   def index
-    expose Project.paginate(:page => params[:page])
+    expose Project.all
   end
 
   def show
