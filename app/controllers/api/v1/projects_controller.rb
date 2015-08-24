@@ -9,8 +9,8 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   def show
     expose({ 
       project: @project, 
-      project_components: @project.project_components
-      project_phases: @project.project_phases
+      project_components: @project.project_components,
+      project_phases: @project.project_phases,
       project_images: @project.project_images
     })
   end

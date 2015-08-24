@@ -8,7 +8,7 @@ class Api::V1::UniversitiesController < Api::V1::BaseController
 
   def show
     expose({
-      university: @university 
+      university: @university,
       projects: Project.where( university_id: @university.id )
     })
   end
