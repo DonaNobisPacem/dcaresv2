@@ -1,4 +1,5 @@
 class Project < ActiveRecord::Base
+	include RocketPants::Cacheable
 	belongs_to :university
 	validates :project_name, presence: true
 	validates :project_code, presence: true, uniqueness: true

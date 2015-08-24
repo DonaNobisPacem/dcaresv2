@@ -1,4 +1,5 @@
 class ProjectPhase < ActiveRecord::Base
+	include RocketPants::Cacheable
   	belongs_to :project
 	validates :phase_name, presence: true
 
