@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Project Classifications</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @project_classifications.each do |project_classification| %>
+      <tr>
+        <td><%= project_classification.description %></td>
+        <td><%= link_to 'Show', project_classification %></td>
+        <td><%= link_to 'Edit', edit_project_classification_path(project_classification) %></td>
+        <td><%= link_to 'Destroy', project_classification, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Project classification', new_project_classification_path %>

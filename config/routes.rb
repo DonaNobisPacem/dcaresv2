@@ -1,6 +1,9 @@
 require 'api_constraints'
 
 Rails.application.routes.draw do
+  resources :project_statuses
+  resources :fund_sources
+  resources :project_classifications
   root 'static_pages#home'
 
   get '/admin_panel' => 'static_pages#admin_panel'
