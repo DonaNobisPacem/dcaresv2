@@ -71,6 +71,6 @@ class ProjectComponentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_component_params
-      params.require(:project_component).permit(:project_id, :component_name, :description, :expected_outcome, :end_user, :percent_accomplishment, :percent_accomplishment_by, :remarks, :has_components, :has_phases, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :bidding_remarks, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :financial_variation, :financial_remarks, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, :timeline_duration, :timeline_extension, :timeline_remarks, :status, :completed_by, :fund_source_ids => [] )
+      params.require(:project_component).permit(:project_id, :component_name, :description, :expected_outcome, :end_user, :percent_accomplishment, :percent_accomplishment_by, :remarks, :has_components, :has_phases, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :bidding_remarks, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :financial_variation, :financial_remarks, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, :timeline_duration, :timeline_extension, :timeline_remarks, :status, :classification, :completed_by, :fund_source_ids => [] )
     end
 end

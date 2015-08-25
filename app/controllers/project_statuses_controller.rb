@@ -28,7 +28,7 @@ class ProjectStatusesController < ApplicationController
 
     respond_to do |format|
       if @project_status.save
-        format.html { redirect_to @project_status, notice: 'Project status was successfully created.' }
+        format.html { redirect_to project_statuses_path, notice: 'Project status was successfully created.' }
         format.json { render :show, status: :created, location: @project_status }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ProjectStatusesController < ApplicationController
   def update
     respond_to do |format|
       if @project_status.update(project_status_params)
-        format.html { redirect_to @project_status, notice: 'Project status was successfully updated.' }
+        format.html { redirect_to project_statuses_path, notice: 'Project status was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_status }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class ProjectStatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_status_params
-      params[:project_status]
+      params.require(:project_status).permit( :description )
     end
 end

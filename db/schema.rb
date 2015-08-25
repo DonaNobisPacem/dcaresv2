@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150728075240) do
+ActiveRecord::Schema.define(version: 20150825040245) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -73,6 +73,12 @@ ActiveRecord::Schema.define(version: 20150728075240) do
   add_index "fundable_projects", ["fund_source_id"], name: "index_fundable_projects_on_fund_source_id", using: :btree
   add_index "fundable_projects", ["project_id"], name: "index_fundable_projects_on_project_id", using: :btree
 
+  create_table "project_classifications", force: :cascade do |t|
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
   create_table "project_components", force: :cascade do |t|
     t.integer  "project_id",                limit: 4
     t.string   "component_name",            limit: 255
@@ -104,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150728075240) do
     t.decimal  "financial_variation",                     precision: 16, scale: 2
     t.integer  "status",                    limit: 4
     t.datetime "completed_by"
+    t.integer  "classification",            limit: 4
   end
 
   add_index "project_components", ["project_id"], name: "index_project_components_on_project_id", using: :btree
@@ -147,6 +154,7 @@ ActiveRecord::Schema.define(version: 20150728075240) do
     t.decimal  "financial_variation",                     precision: 16, scale: 2
     t.integer  "status",                    limit: 4
     t.datetime "completed_by"
+    t.integer  "classification",            limit: 4
   end
 
   add_index "project_phases", ["project_id"], name: "index_project_phases_on_project_id", using: :btree
@@ -191,6 +199,7 @@ ActiveRecord::Schema.define(version: 20150728075240) do
     t.integer  "timeline_duration",         limit: 4
     t.integer  "timeline_extension",        limit: 4
     t.decimal  "financial_variation",                     precision: 16, scale: 2
+    t.integer  "classification",            limit: 4
   end
 
   add_index "projects", ["university_id"], name: "index_projects_on_university_id", using: :btree

@@ -1,4 +1,4 @@
-<h1>Editing Project</h1>
+<h1>Editing <%= link_to @project.project_name, @project %></h1>
 <% if current_user.admin || !current_user.universities.where(:id => @project.university_id ).blank? %>
 	<%= render 'form' %>
 <% else %>

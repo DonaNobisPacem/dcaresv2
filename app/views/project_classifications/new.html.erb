@@ -1,5 +1,9 @@
 <h1>New Project Classification</h1>
+<% if current_user.admin %>
+	<%= render 'form' %>
+<% else %>
+	<%= render 'shared/unauthorized' %>
+<% end %>
+<%= link_to 'Back', "javascript:history.back()" %>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', project_classifications_path %>

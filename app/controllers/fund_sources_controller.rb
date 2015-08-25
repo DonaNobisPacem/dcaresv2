@@ -28,7 +28,7 @@ class FundSourcesController < ApplicationController
 
     respond_to do |format|
       if @fund_source.save
-        format.html { redirect_to @fund_source, notice: 'Fund source was successfully created.' }
+        format.html { redirect_to fund_sources_path, notice: 'Fund source was successfully created.' }
         format.json { render :show, status: :created, location: @fund_source }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class FundSourcesController < ApplicationController
   def update
     respond_to do |format|
       if @fund_source.update(fund_source_params)
-        format.html { redirect_to @fund_source, notice: 'Fund source was successfully updated.' }
+        format.html { redirect_to fund_sources_path, notice: 'Fund source was successfully updated.' }
         format.json { render :show, status: :ok, location: @fund_source }
       else
         format.html { render :edit }
@@ -69,6 +69,6 @@ class FundSourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fund_source_params
-      params[:fund_source]
+      params.require(:fund_source).permit( :source_name )
     end
 end

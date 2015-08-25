@@ -28,7 +28,7 @@ class ProjectClassificationsController < ApplicationController
 
     respond_to do |format|
       if @project_classification.save
-        format.html { redirect_to @project_classification, notice: 'Project classification was successfully created.' }
+        format.html { redirect_to project_classifications_path, notice: 'Project classification was successfully created.' }
         format.json { render :show, status: :created, location: @project_classification }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ProjectClassificationsController < ApplicationController
   def update
     respond_to do |format|
       if @project_classification.update(project_classification_params)
-        format.html { redirect_to @project_classification, notice: 'Project classification was successfully updated.' }
+        format.html { redirect_to project_classifications_path, notice: 'Project classification was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_classification }
       else
         format.html { render :edit }

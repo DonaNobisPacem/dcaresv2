@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       match 'search_users' => 'static_pages#search_users', via: [:get, :post], as: :search_users
     end
   end
+  resources :project_statuses
+  resources :project_classifications
+  resources :fund_sources
 
   namespace :api do
     api version: 1, module: 'v1' do
