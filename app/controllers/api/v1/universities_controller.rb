@@ -1,6 +1,5 @@
 class Api::V1::UniversitiesController < Api::V1::BaseController
   before_action :set_university, only: [:show]
-  caches :index, :show, caches_for: 5.minutes
 
   def index
     expose University.all

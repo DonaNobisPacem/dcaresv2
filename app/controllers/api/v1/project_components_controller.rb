@@ -1,6 +1,5 @@
 class Api::V1::ProjectComponentsController < Api::V1::BaseController
   before_action :set_project_component, only: [:show]
-  caches :index, :show, caches_for: 5.minutes
 
   def index
     expose ProjectComponent.paginate(:page => params[:page])

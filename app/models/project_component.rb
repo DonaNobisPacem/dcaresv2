@@ -1,5 +1,4 @@
 class ProjectComponent < ActiveRecord::Base
-	include RocketPants::Cacheable
   	belongs_to :project
   	validates :component_name, presence: true
 
