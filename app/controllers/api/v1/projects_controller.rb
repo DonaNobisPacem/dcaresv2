@@ -1,6 +1,5 @@
 class Api::V1::ProjectsController < Api::V1::BaseController
   before_action :set_project, only: [:show]
-  caches :index, :show, caches_for: 5.minutes
 
   def index
     expose Project.all
