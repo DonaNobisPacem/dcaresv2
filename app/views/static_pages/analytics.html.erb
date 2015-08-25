@@ -31,20 +31,22 @@
 			<h3>Number of Projects: <%= @output.count %></h3>	
 		</div>
 		<div class="panel-body">
+
 			<b><u>Sorted by CU:</u></b><br>
 			<% @group_by_cu = @output.group_by { |x| x[:university_id] }%>
 			<%= pie_chart @group_by_cu.map {|k,v| [University.find(k).university_name, v.length]} %>
+
 			<b><u>Sorted by status:</u></b><br>
-			<%= pie_chart ({
-				"Completed Projects" => @output.where(:status => "1").count,
-				"Ongoing Projects" => @output.where(:status => "2").count,
-				"Delayed Projects" => @output.where(:status => "3").count,
-				"Terminated Projects" => @output.where(:status => "4").count,
-				"Projects on Bidding Stage" => @output.where(:status => "5").count,
-				"Projects on Proposal Stage" => @output.where(:status => "6").count
-				}) %>
+			<% @group_by_status = @output.group_by { |x| x[:status] }%>
+			<%= pie_chart @group_by_status.map {|k,v| [(ProjectStatus.find(k).description rescue nil), v.length]} %>
+
+			<b><u>Sorted by Project Classification:</u></b><br>
+			<% @group_by_pc = @output.group_by { |x| x[:classification] }%>
+			<%= pie_chart @group_by_pc.map {|k,v| [(ProjectClassification.find(k).description rescue nil), v.length]} %>
+
 			<b><u>Sorted by Fund Source:</u></b><br>
 			<%= pie_chart @output.joins(:fund_sources).group("fund_sources.source_name").count %>
+			
 			<b><u>Sorted by Budget:</u></b><br>
 			<b><li>Total (PhP): <%= number_with_precision( @output.sum(:financial_budget), precision: 2, delimiter: ',' ) %></li></b><br>
 			<%= pie_chart @output.group(:project_name).order('financial_budget desc').sum(:financial_budget) %>
