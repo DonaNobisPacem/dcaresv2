@@ -2,6 +2,9 @@
 <div class="jumbotron">
 <%= search_form_for @q, url: search_report_static_pages_path do |f| %>
 	<div class="row">
+		<div class="col-xs-12">
+			<%= f.input :project_name_cont, :label => "Project Title:", required: false %>
+		</div>
   		<div class="col-xs-6">
   			<%= f.input :status_eq, :collection => ProjectStatus.all, :label_method => :description, :include_blank => true, :label => "Project Status", required: false %>
   		</div>
