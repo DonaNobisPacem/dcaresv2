@@ -6,11 +6,8 @@ class Api::V1::UniversitiesController < Api::V1::BaseController
   end
 
   def show
-    expose({
-      university: @university,
-      projects: Project.where( university_id: @university.id )
-    })
-  end
+    expose Project.where( university_id: @university.id ), only: [:id, :project_name, :project_code]
+    end
 
   private
     # Use callbacks to share common setup or constraints between actions.
