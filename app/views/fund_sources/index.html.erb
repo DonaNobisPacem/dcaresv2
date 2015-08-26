@@ -7,6 +7,7 @@
   <thead>
     <tr>
       <th>Source Name</th>
+      <th>Classification</th>
       <th></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @fund_sources.each do |source| %>
       <tr>
         <td><%= source.source_name %></td>
+        <td><%= source.fund_source_classification %></td>
         <td style="text-align: right;">
            <%= link_to 'Edit', edit_fund_source_path(source) %> | <%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>

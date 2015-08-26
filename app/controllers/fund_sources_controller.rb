@@ -69,6 +69,6 @@ class FundSourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fund_source_params
-      params.require(:fund_source).permit( :source_name )
+      params.require(:fund_source).permit( :source_name, :fund_source_classification )
     end
 end

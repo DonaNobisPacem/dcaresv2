@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150825040245) do
+ActiveRecord::Schema.define(version: 20150826012914) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -34,11 +34,12 @@ ActiveRecord::Schema.define(version: 20150825040245) do
   add_index "contractors", ["contractable_type", "contractable_id"], name: "index_contractors_on_contractable_type_and_contractable_id", using: :btree
 
   create_table "fund_sources", force: :cascade do |t|
-    t.string   "source_name",   limit: 255
-    t.integer  "fundable_id",   limit: 4
-    t.string   "fundable_type", limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "source_name",                limit: 255
+    t.integer  "fundable_id",                limit: 4
+    t.string   "fundable_type",              limit: 255
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "fund_source_classification", limit: 255
   end
 
   add_index "fund_sources", ["fundable_type", "fundable_id"], name: "index_fund_sources_on_fundable_type_and_fundable_id", using: :btree
