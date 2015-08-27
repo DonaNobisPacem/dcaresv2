@@ -5,6 +5,7 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-xs-12">
+			<b>Status: </b><%= ProjectClassification.find( project.classification ).description if project.classification.present? %><br>
 			<b>Status: </b><%= ProjectStatus.find( project.status ).description if project.status %><br>
 			<b>Date Completed: </b><%= project.completed_by.strftime("%d %B %Y") if project.completed_by %><br>
 			<b>Last Updated: </b><%= project.updated_at.strftime("%d %B %Y") if project.updated_at %>
