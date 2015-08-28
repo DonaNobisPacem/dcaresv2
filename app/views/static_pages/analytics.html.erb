@@ -32,27 +32,47 @@
 		</div>
 		<div class="panel-body">
 
-			<b><u>Sorted by CU:</u></b><br>
-			<% @group_by_cu = @output.group_by { |x| x[:university_id] }%>
-			<%= pie_chart @group_by_cu.map {|k,v| [University.find(k).university_name, v.length]} %>
+			<h2><b>System-wide:</b></h2>
 
-			<b><u>Sorted by status:</u></b><br>
-			<% @group_by_status = @output.group_by { |x| x[:status] }%>
-			<%= pie_chart @group_by_status.map {|k,v| [(ProjectStatus.find(k).description rescue nil), v.length]} %>
+			<b><u>Budget Distribution per CU:</u></b><br>
+			<div class="jumbotron">
+				<b><li>Total (PhP): <%= number_with_precision( @output.sum(:financial_budget), precision: 2, delimiter: ',' ) %></li></b><br>
+				<%= pie_chart @budget_distribution_per_cu.map { |k, v| [University.find(k).university_name, v] } %>
+			</div>
+
+			<b><u>Project Distribution per CU:</u></b><br>
+			<div class="jumbotron">
+				<%= pie_chart @group_by_cu.map {|k,v| [University.find(k).university_name, v.length]} %>
+			</div>
+
+			<b><u>Project Status vs Source of Funding:</u></b><br>
+			<div class="jumbotron">
+				<%= column_chart @status_vs_src_vs_classification %>
+				<%= column_chart @status_vs_src_vs_classification_count, stacked: true %>
+			</div>
+
+			<b><u>Project Status:</u></b><br>
+			<div class="jumbotron">
+				<%= pie_chart @group_by_status.map {|k,v| [(ProjectStatus.find(k).description rescue nil), v.length]} %>
+			</div>
+
+			<b><u>Project Funding:</u></b><br>
+			<div class="jumbotron">
+				<%= pie_chart @output.joins(:fund_sources).group("fund_sources.fund_source_classification").count %>
+				<%= pie_chart @output.joins(:fund_sources).group("fund_sources.source_name").count %>
+			</div>
 
 			<b><u>Sorted by Project Classification:</u></b><br>
-			<% @group_by_pc = @output.group_by { |x| x[:classification] }%>
-			<%= pie_chart @group_by_pc.map {|k,v| [(ProjectClassification.find(k).description rescue nil), v.length]} %>
+			<div class="jumbotron">
+				<%= pie_chart @group_by_pc.map {|k,v| [(ProjectClassification.find(k).description rescue nil), v.length]} %>
+			</div>
 
-			<b><u>Sorted by Fund Source:</u></b><br>
-			<%= pie_chart @output.joins(:fund_sources).group("fund_sources.source_name").count %>
-
-			<b><u>Sorted by Fund Source Classification:</u></b><br>
-			<%= pie_chart @output.joins(:fund_sources).group("fund_sources.fund_source_classification").count %>
-			
 			<b><u>Sorted by Budget:</u></b><br>
-			<b><li>Total (PhP): <%= number_with_precision( @output.sum(:financial_budget), precision: 2, delimiter: ',' ) %></li></b><br>
-			<%= pie_chart @output.group(:project_name).order('financial_budget desc').sum(:financial_budget) %>
+			<div class="jumbotron">
+				<b><li>Total (PhP): <%= number_with_precision( @output.sum(:financial_budget), precision: 2, delimiter: ',' ) %></li></b><br>
+				<%= pie_chart @output.group(:project_name).order('financial_budget desc').sum(:financial_budget) %>
+			</div>
+
 			<%= render 'shared/projects_list' %>
 		</div>
 	</div>
