@@ -41,7 +41,9 @@ class StaticPagesController < ApplicationController
 		end
 		@status_vs_src_vs_classification_count = []
 		ProjectStatus.find_each do |status|
-			@status_vs_src_vs_classification_count << {:name => status.description, :data => @output.where( status: status.id ).joins(:fund_sources).group("fund_sources.fund_source_classification").order('fund_sources.fund_source_classification asc').count}
+			total_count = Project.joins(:fund_sources).group("fund_sources.fund_source_classification").order('fund_sources.fund_source_classification asc').count
+			classification_count = @output.where( status: status.id ).joins(:fund_sources).group("fund_sources.fund_source_classification").order('fund_sources.fund_source_classification asc').count
+			@status_vs_src_vs_classification_count << {:name => status.description, :data => classification_count.map {|k,v| [ k, (100*v/total_count[k].to_f).round(2) ]} }
 		end
 	end
 

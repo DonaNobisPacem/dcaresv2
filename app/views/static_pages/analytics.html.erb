@@ -37,7 +37,7 @@
 			<b><u>Budget Distribution per CU:</u></b><br>
 			<div class="jumbotron">
 				<b><li>Total (PhP): <%= number_with_precision( @output.sum(:financial_budget), precision: 2, delimiter: ',' ) %></li></b><br>
-				<%= pie_chart @budget_distribution_per_cu.map { |k, v| [University.find(k).university_name, v] } %>
+				<%= pie_chart @budget_distribution_per_cu.map { |k, v| [University.find(k).university_name, number_with_precision( v/BigDecimal.new("1000000"), precision: 3 )] } %>
 			</div>
 
 			<b><u>Project Distribution per CU:</u></b><br>

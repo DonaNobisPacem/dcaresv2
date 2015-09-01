@@ -1,13 +1,14 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Infrastructures") do |sheet|
-    sheet.add_row ["Project Code", "Project Title", "Description", "Desired Project Outcome", "Budget (PhP)", "Contract Price (PhP)", "Actual Cost (PhP)", "Source of Funds", "Contractor/Vendor", "No. of Biddings", "Date of Notice of Award", "Date of Notice to Proceed", "Target Start Date", "Actual Start Date", "% Accomplisment", "Target Completion Date", "Actual Completion Date", "Remarks"]
+    sheet.add_row ["Project Code", "Project Title", "Project Classification", "Description", "Desired Project Outcome", "Budget (PhP)", "Contract Price (PhP)", "Actual Cost (PhP)", "Source of Funds", "Contractor/Vendor", "No. of Biddings", "Date of Notice of Award", "Date of Notice to Proceed", "Target Start Date", "Actual Start Date", "% Accomplisment", "Target Completion Date", "Actual Completion Date", "Remarks"]
     @projects_list.each do |project|
     	@source_of_funds = ""
     	project.fund_sources.each do |source|
     		@source_of_funds = @source_of_funds + source.source_name + "\n"
     	end
     	@source_of_funds = @source_of_funds + project.financial_source.to_s
-        sheet.add_row [project.project_code, project.project_name, project.description, project.expected_outcome, project.financial_budget, project.financial_contract_price, project.financial_actual_cost, @source_of_funds, project.bidding_contractor, project.bidding_number, project.bidding_award.try(:strftime, "%d %B %Y"), project.bidding_proceed.try(:strftime, "%d %B %Y"), project.timeline_target_start.try(:strftime, "%d %B %Y"), project.timeline_actual_start.try(:strftime, "%d %B %Y"), project.percent_accomplishment, project.timeline_target_end.try(:strftime, "%d %B %Y"), project.timeline_actual_end.try(:strftime, "%d %B %Y"), project.remarks]
+        @project_classification = ProjectStatus.find(project.classification).description rescue nil
+        sheet.add_row [project.project_code, project.project_name, @project_classification ,project.description, project.expected_outcome, project.financial_budget, project.financial_contract_price, project.financial_actual_cost, @source_of_funds, project.bidding_contractor, project.bidding_number, project.bidding_award.try(:strftime, "%d %B %Y"), project.bidding_proceed.try(:strftime, "%d %B %Y"), project.timeline_target_start.try(:strftime, "%d %B %Y"), project.timeline_actual_start.try(:strftime, "%d %B %Y"), project.percent_accomplishment, project.timeline_target_end.try(:strftime, "%d %B %Y"), project.timeline_actual_end.try(:strftime, "%d %B %Y"), project.remarks]
         project.project_components.each do |component|
         	@component_source_of_funds = ""
 	    	component.fund_sources.each do |source|
