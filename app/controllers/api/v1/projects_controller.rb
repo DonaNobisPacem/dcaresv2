@@ -6,12 +6,17 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   end
 
   def show
-    expose({ 
-      project: @project, 
-      project_components: @project.project_components,
-      project_phases: @project.project_phases,
-      project_images: @project.project_images
-    })
+    # expose({ 
+    #   project: @project, 
+    #   project_components: @project.project_components,
+    #   project_phases: @project.project_phases,
+    #   project_images: @project.project_images
+    # })
+    expose @project, :include => {
+      :project_components => { only: [ :id, :component_name ] },
+      :project_phases => { only: [ :id, :phase_name ] },
+      :project_images => { only: [ :id, :image ] }      
+    }
   end
 
   private
