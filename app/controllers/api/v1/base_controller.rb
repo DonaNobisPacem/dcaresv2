@@ -1,8 +1,8 @@
 class Api::V1::BaseController < RocketPants::Base
   version 1
 
-  #before_filter :authenticate_user_from_token
-  #before_filter :require_authentication!
+  before_filter :authenticate_user_from_token
+  before_filter :require_authentication!
 
   def current_user
     @current_user

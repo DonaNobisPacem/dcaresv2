@@ -8,6 +8,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
       @user.save!
 
       expose({
+      	success: true,
         user_id: @user.id,
         token: @user.auth_token
       })
