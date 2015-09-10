@@ -13,6 +13,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     #   project_images: @project.project_images
     # })
     expose @project, :include => {
+      :fund_sources => { only: [:source_name ] },
       :project_components => { only: [ :id, :component_name ] },
       :project_phases => { only: [ :id, :phase_name ] },
       :project_images => { only: [ :id, :image ] }      
