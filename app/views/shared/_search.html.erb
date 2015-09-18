@@ -37,7 +37,7 @@
 			  			<%= f.input :bidding_contractor_cont, :label => "Contractor/s:", required: false %>
 			  		</div>
 			  		<div class="col-xs-6">
-			  			<%= f.input :fund_sources_id_in, :collection => FundSource.all.order(:source_name), :label_method => :source_name, :include_blank => true, :label => "Source of fund/s:", required: false %>
+			  			<%= f.input :funds_fund_source_in, :collection => FundSource.all.order(:source_name), :label_method => :source_name, :include_blank => true, :label => "Source of fund/s:", required: false %>
 			  		</div>
 			  	</div>
 			  	<div class="row">

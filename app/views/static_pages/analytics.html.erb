@@ -17,7 +17,7 @@
   			<%= f.input :university_id_in, :collection => University.all.order(:university_name), :label_method => :university_name, :include_blank => true, :label => "Project of:", required: false %>
   		</div>
   		<div class="col-xs-6">
-  			<%= f.input :fund_sources_id_in, :collection => FundSource.all.order(:source_name), :label_method => :source_name, :include_blank => true, :label => "Source of fund/s:", required: false %>
+  			<%= f.input :funds_fund_source_in, :collection => FundSource.all.order(:source_name), :label_method => :source_name, :include_blank => true, :label => "Source of fund/s:", required: false %>
   		</div>
   	</div>
   	
@@ -42,29 +42,33 @@
 
 			<b><u>Project Distribution per CU:</u></b><br>
 			<div class="jumbotron">
-				<%= pie_chart @group_by_cu.map {|k,v| [University.find(k).university_name, v.length]} %>
+				<%= pie_chart @group_by_cu %>
 			</div>
 
 			<b><u>Project Status vs Source of Funding:</u></b><br>
 			<div class="jumbotron">
+				<b><u>By Budget:</u></b><br>
 				<%= column_chart @status_vs_src_vs_classification %>
+				<b><u>Percentages:</u></b><br>
+				<%= column_chart @status_vs_src_vs_classification_percent, stacked: true %>
+				<b><u>Raw Numbers:</u></b><br>
 				<%= column_chart @status_vs_src_vs_classification_count, stacked: true %>
 			</div>
 
 			<b><u>Project Status:</u></b><br>
 			<div class="jumbotron">
-				<%= pie_chart @group_by_status.map {|k,v| [(ProjectStatus.find(k).description rescue nil), v.length]} %>
+				<%= pie_chart @group_by_status %>
 			</div>
 
 			<b><u>Project Funding:</u></b><br>
 			<div class="jumbotron">
-				<%= pie_chart @output.joins(:fund_sources).group("fund_sources.fund_source_classification").count %>
-				<%= pie_chart @output.joins(:fund_sources).group("fund_sources.source_name").count %>
+				<%= pie_chart @group_by_fund_classification %>
+				<%= pie_chart @group_by_fund_name %>
 			</div>
 
 			<b><u>Sorted by Project Classification:</u></b><br>
 			<div class="jumbotron">
-				<%= pie_chart @group_by_pc.map {|k,v| [(ProjectClassification.find(k).description rescue nil), v.length]} %>
+				<%= pie_chart @group_by_pc %>
 			</div>
 
 			<b><u>Sorted by Budget:</u></b><br>

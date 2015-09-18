@@ -2,7 +2,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
   before_action :set_project, only: [:show]
 
   def index
-    expose Project.all
+    expose Project.all, only: [:id, :project_name, :project_code]
   end
 
   def show
@@ -12,11 +12,11 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     #   project_phases: @project.project_phases,
     #   project_images: @project.project_images
     # })
+  
     expose @project, :include => {
-      :fund_sources => { only: [:source_name ] },
+      :funds => { only: [ methods: :fund_source ], methods: :source_name },
       :project_components => { only: [ :id, :component_name ] },
-      :project_phases => { only: [ :id, :phase_name ] },
-      :project_images => { only: [ :id, :image ] }      
+      :project_phases => { only: [ :id, :phase_name ] }      
     }
   end
 

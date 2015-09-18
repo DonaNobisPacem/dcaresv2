@@ -2,7 +2,7 @@ class Api::V1::UniversitiesController < Api::V1::BaseController
   before_action :set_university, only: [:show]
 
   def index
-    expose University.all
+    expose University.all, only: [:id, :university_name, :university_code]
   end
 
   def show

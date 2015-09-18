@@ -13,8 +13,12 @@ class Project < ActiveRecord::Base
 	has_many :fundable_projects, :dependent => :destroy
   	has_many :fund_sources, through: :fundable_projects
 
+  	has_many :funds, as: :fundable, :dependent => :destroy
+
 	validate :project_images_count_within_bounds
 	accepts_nested_attributes_for :project_images, :project_components, :project_phases, :fund_sources
+	accepts_nested_attributes_for :funds, :reject_if => :all_blank, :allow_destroy => true
+
 	acts_as_xlsx
 
 	def variation_percentage

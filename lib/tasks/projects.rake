@@ -66,4 +66,13 @@ namespace :projects do
 			project.save!
 		end
 	end
+
+	desc "transfer fund_sources to funds"
+	task :to_funds => :environment do
+		Project.find_each do |project|
+			project.fund_sources.each do |fs|
+				Fund.create({ fund_source: fs.id, budget: project.financial_budget, fundable_id: project.id, fundable_type: "Project" })
+			end
+		end
+	end
 end

@@ -5,7 +5,10 @@ class ProjectComponent < ActiveRecord::Base
   	has_many :fundable_components, :dependent => :destroy
   	has_many :fund_sources, through: :fundable_components
 
+  	has_many :funds, as: :fundable, :dependent => :destroy
+
 	accepts_nested_attributes_for :fund_sources
+	accepts_nested_attributes_for :funds, :reject_if => :all_blank, :allow_destroy => true
 
 	def variation_percentage
 		if financial_variation.present?

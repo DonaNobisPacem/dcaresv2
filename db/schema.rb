@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150826012914) do
+ActiveRecord::Schema.define(version: 20150918033234) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 20150826012914) do
   add_index "fundable_projects", ["fund_source_id"], name: "index_fundable_projects_on_fund_source_id", using: :btree
   add_index "fundable_projects", ["project_id"], name: "index_fundable_projects_on_project_id", using: :btree
 
+  create_table "funds", force: :cascade do |t|
+    t.integer  "fund_source",   limit: 4
+    t.decimal  "budget",                    precision: 16, scale: 2
+    t.integer  "fundable_id",   limit: 4
+    t.string   "fundable_type", limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "funds", ["fundable_type", "fundable_id"], name: "index_funds_on_fundable_type_and_fundable_id", using: :btree
+
   create_table "project_classifications", force: :cascade do |t|
     t.string   "description", limit: 255
     t.datetime "created_at",              null: false
@@ -117,12 +128,16 @@ ActiveRecord::Schema.define(version: 20150826012914) do
   add_index "project_components", ["project_id"], name: "index_project_components_on_project_id", using: :btree
 
   create_table "project_images", force: :cascade do |t|
-    t.integer  "project_id",  limit: 4
-    t.string   "image",       limit: 255
-    t.string   "description", limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "project_id",     limit: 4
+    t.string   "image",          limit: 255
+    t.string   "description",    limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "imageable_id",   limit: 4
+    t.string   "imageable_type", limit: 255
   end
+
+  add_index "project_images", ["imageable_id"], name: "index_project_images_on_imageable_id", using: :btree
 
   create_table "project_phases", force: :cascade do |t|
     t.integer  "project_id",                limit: 4

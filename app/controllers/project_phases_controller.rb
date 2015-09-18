@@ -16,10 +16,12 @@ class ProjectPhasesController < ApplicationController
   # GET /project_phases/new
   def new
    @project_phase = ProjectPhase.new(:project_id => params[:project_id])
+   @project_phase.funds.build
   end
 
   # GET /project_phases/1/edit
   def edit
+    @project_phase.funds.build unless @project_phase.funds.count > 0
   end
 
   # POST /project_phases
@@ -71,6 +73,6 @@ class ProjectPhasesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_phase_params
-      params.require(:project_phase).permit(:project_id, :phase_name, :description, :expected_outcome, :end_user, :percent_accomplishment, :percent_accomplishment_by, :remarks, :has_components, :has_phases, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :bidding_remarks, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :financial_variation, :financial_remarks, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, :timeline_duration, :timeline_extension, :timeline_remarks, :status, :classification, :completed_by, :fund_source_ids => [])
+      params.require(:project_phase).permit(:project_id, :phase_name, :description, :expected_outcome, :end_user, :percent_accomplishment, :percent_accomplishment_by, :remarks, :has_components, :has_phases, :bidding_contractor, :bidding_number, :bidding_award, :bidding_proceed, :bidding_remarks, :financial_source, :financial_budget, :financial_contract_price, :financial_actual_cost, :financial_variation, :financial_remarks, :timeline_target_start, :timeline_target_end, :timeline_actual_start, :timeline_actual_end, :timeline_duration, :timeline_extension, :timeline_remarks, :status, :classification, :completed_by, :fund_source_ids => [], funds_attributes: [ :id, :fund_source, :budget, :_destroy] )
     end
 end

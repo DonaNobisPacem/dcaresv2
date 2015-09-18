@@ -4,10 +4,9 @@ University.find_each do |university|
         sheet.add_row ["Project Code", "Project Title", "Project Classification", "Status", "Date Last Updated", "Percentage Completion", "Date of Completion", "Budget (PhP)", "Source of funding"]
         @projects.where( :university_id => university.id ).each do |project|
         	@source_of_funds = ""
-        	project.fund_sources.each do |source|
+        	project.funds.each do |source|
         		@source_of_funds = @source_of_funds + source.source_name + "\n"
         	end
-        	@source_of_funds = @source_of_funds + project.financial_source.to_s
             classification = ProjectClassification.find(project.classification).description rescue nil
             status = ProjectStatus.find( project.status ).description
             sheet.add_row [project.project_code, project.project_name, classification, status, project.updated_at.try(:strftime, "%d %B %Y"), project.percent_accomplishment, project.timeline_actual_end.try(:strftime, "%d %B %Y"), project.financial_budget, @source_of_funds]        
