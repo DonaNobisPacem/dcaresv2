@@ -14,7 +14,7 @@ class Api::V1::ProjectsController < Api::V1::BaseController
     # })
   
     expose @project, :include => {
-      :funds => { only: [ methods: :fund_source ], methods: :source_name },
+      :funds => { only: [ :budget ], methods: :source_name },
       :project_components => { only: [ :id, :component_name ] },
       :project_phases => { only: [ :id, :phase_name ] }      
     }
