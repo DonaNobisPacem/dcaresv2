@@ -3,13 +3,28 @@
 
   <div class="form-inputs">
   	<div class="panel panel-info">
-		<div class="panel-heading">
-			<h3>Project phase for [<%= @project_phase.project.project_code %>] <%= @project_phase.project.project_name %></h3>
-		</div>
-		<div class="panel-body">
-		  	<%= simple_format(@project_phase.project.description) %>
-		</div>
-	</div>
+  		<div class="panel-heading">
+  			<b>Phase Status</b>
+  		</div>
+  		<div class="panel-body">
+  			<div class="col-xs-6">
+  				<%= f.input :status, :collection => ProjectStatus.all, :label_method => :description, :include_blank => false, :label => "Phase Status" %>
+  			</div>
+  			<div class="col-xs-6">
+  				<%= f.input :classification, :collection => ProjectClassification.all, :label_method => :description, :include_blank => true, :label => "Phase Classification" %>
+  			</div>
+
+  			<div class="col-xs-4">
+				<%= f.input :percent_accomplishment, :label => "Percent Accomplisment:" %>
+			</div>
+  			<div class="col-xs-4">
+  				<%= f.input :completed_by, :label => "Completed By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
+  			</div>
+			<div class="col-xs-4">
+				<%= f.input :percent_accomplishment_by, :label => "Percent Accomplished By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
+			</div>
+  		</div>
+  	</div>
 
 
 	<div class="panel panel-info">
@@ -29,13 +44,6 @@
 			</div>
 			<div class="col-xs-6">
 			<%= f.input :expected_outcome, :label => "Expected Outcome:", :input_html => {:rows => 5} %>
-			</div>
-
-			<div class="col-xs-6">
-			<%= f.input :percent_accomplishment, :label => "Percent Accomplisment:" %>
-			</div>
-			<div class="col-xs-6">
-			<%= f.input :percent_accomplishment_by, :label => "Percent Accomplished By:", :start_year => Date.today.year, :end_year => 1900, :include_blank => true, :as => :date_picker, :placeholder => "DD/MM/YYYY" %>
 			</div>
 
 			<div class="col-xs-12">
