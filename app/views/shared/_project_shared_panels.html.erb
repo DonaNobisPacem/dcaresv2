@@ -53,11 +53,37 @@
 	</div>
 	<div class="panel-body">
 		<div class="col-xs-12">
+
+			<div class="progress">
+			    <div class="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="<%= project.bidding_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= project.bidding_percentage %>%">
+			        <span><%= project.bidding_percentage %>% Complete</span>
+			    </div>
+			</div>
+		
+
 			<b>Contractor/s: </b><%= project.bidding_contractor %><br>
 			<b>Number of Biddings: </b><%= project.bidding_number %><br>
-			<b>Date of Notice of Award: </b><%= project.bidding_award.strftime("%d %B %Y") if project.bidding_award %><br>
-			<b>Date of Notice to Proceed: </b><%= project.bidding_proceed.strftime("%d %B %Y") if project.bidding_proceed %><br>
-			<b>Period between NoA and NtP (in Calendar Days): </b><%= (project.bidding_proceed.to_date - project.bidding_award.to_date).to_i.to_s + " days" if project.bidding_award.present? && project.bidding_proceed.present? %>
+
+			<br>
+			
+			<div class="row">
+				<div class="col-xs-6">
+					<b>Date of Pre-Procurement: </b><%= project.bidding_preprocurement.strftime("%d %B %Y") if project.bidding_preprocurement %><br>
+					<b>Date of Pre-Bidding: </b><%= project.bidding_prebidding.strftime("%d %B %Y") if project.bidding_prebidding %><br>
+					<b>Date of Post-Qualification: </b><%= project.bidding_postquali.strftime("%d %B %Y") if project.bidding_postquali %><br>
+					<b>Date of Notice of Award: </b><%= project.bidding_award.strftime("%d %B %Y") if project.bidding_award %><br>
+					<b>Date of Purchase Order/ Contract: </b><%= project.bidding_purchase.strftime("%d %B %Y") if project.bidding_purchase %><br>
+					<b>Date of Notice to Proceed: </b><%= project.bidding_proceed.strftime("%d %B %Y") if project.bidding_proceed %><br>
+				</div>
+				<div class="col-xs-6">
+					<b>Period between Bidding Stages (in Calendar Days): </b><br>
+					- <%= project.date_period( project.bidding_prebidding, project.bidding_preprocurement ) %><br>
+					- <%= project.date_period( project.bidding_postquali, project.bidding_prebidding ) %><br>
+					- <%= project.date_period( project.bidding_award, project.bidding_postquali ) %><br>
+					- <%= project.date_period( project.bidding_purchase, project.bidding_award ) %><br>
+					- <%= project.date_period( project.bidding_proceed, project.bidding_purchase ) %>
+				</div>
+			</div>
 		</div>
 		<br>
 		<div class="col-xs-12">
