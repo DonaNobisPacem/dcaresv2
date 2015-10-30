@@ -1,6 +1,6 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Infrastructures") do |sheet|
-    sheet.add_row ["Project Code", "Project Title", "Project Status", "Project Classification", "Description", "Desired Project Outcome", "End User/s", "Budget (PhP)", "Contract Price (PhP)", "Actual Cost (PhP)", "Source of Funds", "Contractor/Vendor", "No. of Biddings", "Date of Pre-Procurement", "Date of Pre-Bidding", "Date of Post-Qualification", "Date of Notice of Award", "Date of Purchase Order", "Date of Notice to Proceed", "Target Start Date", "Actual Start Date", "% Accomplishment", "Target Completion Date", "Actual Completion Date", "General Remarks", "Bidding Remarks", "Financial Remarks", "Timeline Remarks"]
+    sheet.add_row ["Project Code", "Project Title", "Project Status", "Project Classification", "Description", "Desired Project Outcome", "End User/s", "Budget (PhP)", "Contract Price (PhP)", "Actual Cost (PhP)", "Source of Funds", "Contractor/Vendor", "No. of Biddings", "Date of Pre-Procurement", "Date of Pre-Bidding", "Date of Post-Qualification", "Date of Notice of Award", "Date of Purchase Order/Contract", "Date of Notice to Proceed", "Target Start Date", "Actual Start Date", "% Accomplishment", "Target Completion Date", "Actual Completion Date", "General Remarks", "Bidding Remarks", "Financial Remarks", "Timeline Remarks"]
     @projects_list.each do |project|
     	@source_of_funds = ""
     	project.funds.each do |source|
