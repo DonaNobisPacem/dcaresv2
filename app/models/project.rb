@@ -53,14 +53,15 @@ class Project < ActiveRecord::Base
 	
 	def bidding_percentage
 		bid_percent = 0.00
-		step_value = 100.00 / 6.00
+		step_value = 100.00 / 7.00
 		bid_percent += step_value if bidding_preprocurement.present?
 		bid_percent += step_value if bidding_prebidding.present?
+		bid_percent += step_value if bidding_bidding.present?
 		bid_percent += step_value if bidding_postquali.present?
 		bid_percent += step_value if bidding_award.present?
 		bid_percent += step_value if bidding_purchase.present?
 		bid_percent += step_value if bidding_proceed.present?
-		return bid_percent
+		return bid_percent.round(2)
 	end
 
 	private

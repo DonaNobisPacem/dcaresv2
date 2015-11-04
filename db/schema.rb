@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151029084614) do
+ActiveRecord::Schema.define(version: 20151104032332) do
 
   create_table "can_edits", force: :cascade do |t|
     t.integer  "user_id",       limit: 4
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 20151029084614) do
     t.datetime "bidding_prebidding"
     t.datetime "bidding_postquali"
     t.datetime "bidding_purchase"
+    t.datetime "bidding_bidding"
   end
 
   add_index "project_components", ["project_id"], name: "index_project_components_on_project_id", using: :btree
@@ -137,11 +138,8 @@ ActiveRecord::Schema.define(version: 20151029084614) do
     t.string   "description",    limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
-    t.integer  "imageable_id",   limit: 4
     t.string   "imageable_type", limit: 255
   end
-
-  add_index "project_images", ["imageable_id"], name: "index_project_images_on_imageable_id", using: :btree
 
   create_table "project_phases", force: :cascade do |t|
     t.integer  "project_id",                limit: 4
@@ -179,6 +177,7 @@ ActiveRecord::Schema.define(version: 20151029084614) do
     t.datetime "bidding_prebidding"
     t.datetime "bidding_postquali"
     t.datetime "bidding_purchase"
+    t.datetime "bidding_bidding"
   end
 
   add_index "project_phases", ["project_id"], name: "index_project_phases_on_project_id", using: :btree
@@ -228,6 +227,7 @@ ActiveRecord::Schema.define(version: 20151029084614) do
     t.datetime "bidding_prebidding"
     t.datetime "bidding_postquali"
     t.datetime "bidding_purchase"
+    t.datetime "bidding_bidding"
   end
 
   add_index "projects", ["university_id"], name: "index_projects_on_university_id", using: :btree
