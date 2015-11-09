@@ -51,8 +51,13 @@
               <%= h("End User/s \n").gsub(/\n/, '<br/>').html_safe if project.end_user.blank? %>
               <%= h("Contractor/s \n").gsub(/\n/, '<br/>').html_safe if project.bidding_contractor.blank? %>
               <%= h("Number of Biddings \n").gsub(/\n/, '<br/>').html_safe if project.bidding_number.blank? %>
-              <%= h("Date of NoA \n").gsub(/\n/, '<br/>').html_safe if project.bidding_award.blank? %>
-              <%= h("Date of NtP \n").gsub(/\n/, '<br/>').html_safe if project.bidding_proceed.blank? %>
+              <%= h("Date of Pre-Procurement \n").gsub(/\n/, '<br/>').html_safe if project.bidding_preprocurement.blank? %>
+              <%= h("Date of Pre-Bidding \n").gsub(/\n/, '<br/>').html_safe if project.bidding_prebidding.blank? %>
+              <%= h("Date of Bidding \n").gsub(/\n/, '<br/>').html_safe if project.bidding_bidding.blank? %>
+              <%= h("Date of Post-Qualification \n").gsub(/\n/, '<br/>').html_safe if project.bidding_postquali.blank? %>
+              <%= h("Date of Notice of Award \n").gsub(/\n/, '<br/>').html_safe if project.bidding_award.blank? %>
+              <%= h("Date of Purchase Order/Contract \n").gsub(/\n/, '<br/>').html_safe if project.bidding_purchase.blank? %>
+              <%= h("Date of Notice to Proceed \n").gsub(/\n/, '<br/>').html_safe if project.bidding_proceed.blank? %>
               <%= h("Source of Funds \n").gsub(/\n/, '<br/>').html_safe if project.fund_sources.blank? %>
               <%= h("Budget \n").gsub(/\n/, '<br/>').html_safe if project.financial_budget.blank? %>
               <%= h("Contract Price \n").gsub(/\n/, '<br/>').html_safe if project.financial_contract_price.blank? %>
@@ -61,7 +66,6 @@
               <%= h("Target Completion Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_target_end.blank? %>
               <%= h("Actual Start Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_actual_start.blank? %>
               <%= h("Actual Completion Date \n").gsub(/\n/, '<br/>').html_safe if project.timeline_actual_end.blank? %>
-              <%= h("Project Duration \n").gsub(/\n/, '<br/>').html_safe if project.timeline_duration.blank? %>
               <%= h("Project Extension \n").gsub(/\n/, '<br/>').html_safe if project.timeline_extension.blank? %>
             </td>
           </tr>
