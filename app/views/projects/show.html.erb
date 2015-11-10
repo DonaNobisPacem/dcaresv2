@@ -39,9 +39,9 @@
 						  <tbody>
 						    <% @project_components.each do |component| %>
 						      <tr>
-						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= component.component_name %></td>
-						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= component.description %></td>
-						        <td style="text-align: right; word-wrap: break-word;min-width: 200px;max-width: 20	0px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
+						        <td style="text-align: left; word-wrap: break-word;max-width: 220px;white-space:normal;"><%= component.component_name %></td>
+						        <td style="text-align: left; word-wrap: break-word;max-width: 220px;white-space:normal;"><%= component.description %></td>
+						        <td style="text-align: right; word-wrap: break-word;max-width: 200px;white-space:normal;"><%= link_to "View details", project_project_component_path(@project, component), :class => "btn btn-small btn-info" %></td>    
 						      </tr>
 						    <% end %>
 						  </tbody>
@@ -78,9 +78,9 @@
 						  <tbody>
 						    <% @project_phases.each do |phase| %>
 						      <tr>
-						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= phase.phase_name %></td>
-						        <td style="text-align: left; word-wrap: break-word;min-width: 220px;max-width: 220px;white-space:normal;"><%= phase.description %></td>
-						        <td style="text-align: right; word-wrap: break-word;min-width: 200px;max-width: 200px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
+						        <td style="text-align: left; word-wrap: break-word;max-width: 220px;white-space:normal;"><%= phase.phase_name %></td>
+						        <td style="text-align: left; word-wrap: break-word;max-width: 220px;white-space:normal;"><%= phase.description %></td>
+						        <td style="text-align: right; word-wrap: break-word;max-width: 200px;white-space:normal;"><%= link_to "View details", project_project_phase_path(@project, phase), :class => "btn btn-small btn-info" %></td>    
 						      </tr>
 						    <% end %>
 						  </tbody>
@@ -124,7 +124,10 @@
   							</div>
   						<% end %>
 						<div class="col-xs-4">
-							<%= link_to image_tag(image.image_url(:thumbnail)), project_project_image_path(@project, image) %><br>
+							<%= link_to project_project_image_path(@project, image) do %>
+								<%= image_tag image.image_url(:thumbnail), :class => "img-responsive center-image" %>
+							<% end %>
+							<br>
   						</div>
 					<% end %>
 				</div>
