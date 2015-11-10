@@ -14,7 +14,9 @@ Rails.application.routes.draw do
     resources :project_components
     resources :project_images
   end
-  resources :users
+  scope "/admin" do
+    resources :users
+  end
   resources :universities do
     collection do
       match 'search' => 'universities#search', via: [:get, :post], as: :search
