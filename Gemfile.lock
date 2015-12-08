@@ -187,7 +187,7 @@ GEM
     moneta (0.8.0)
     multi_json (1.11.0)
     multi_xml (0.5.5)
-    mysql2 (0.3.18)
+    mysql2 (0.3.20)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -347,7 +347,7 @@ DEPENDENCIES
   jquery-rails
   mini_magick
   momentjs-rails!
-  mysql2
+  mysql2 (~> 0.3.20)
   rabl-rails
   rails (= 4.2.1)
   ransack!
@@ -366,3 +366,6 @@ DEPENDENCIES
   whenever
   will_paginate
   will_paginate-bootstrap
+
+BUNDLED WITH
+   1.10.6
