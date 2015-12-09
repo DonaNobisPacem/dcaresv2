@@ -75,4 +75,14 @@ namespace :projects do
 			end
 		end
 	end
+
+
+
+	desc "purge all projects with proposal stage status"
+	task :purge_proposals => :environment do 
+		@projects = Project.where( :status => 5 )
+		@projects.each do |project|
+			project.destroy
+		end
+	end
 end
