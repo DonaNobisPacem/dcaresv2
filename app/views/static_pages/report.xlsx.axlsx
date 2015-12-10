@@ -5,7 +5,7 @@ University.find_each do |university|
         @projects.where( :university_id => university.id ).each do |project|
         	@source_of_funds = ""
         	project.funds.each do |source|
-        		@source_of_funds = @source_of_funds + source.source_name + "\n"
+        		@source_of_funds = @source_of_funds + source.source_name + " - " + source.budget.to_s + "\n"
         	end
             classification = ProjectClassification.find(project.classification).description rescue nil
             status = ProjectStatus.find( project.status ).description
@@ -13,3 +13,4 @@ University.find_each do |university|
         end
     end
 end
+

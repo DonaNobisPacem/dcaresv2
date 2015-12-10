@@ -4,7 +4,7 @@ wb.add_worksheet(name: "Infrastructures") do |sheet|
     @projects_list.each do |project|
     	@source_of_funds = ""
     	project.funds.each do |source|
-    		@source_of_funds = @source_of_funds + source.source_name + "\n"
+    		@source_of_funds = @source_of_funds + source.source_name + " - " + source.budget.to_s + "\n"
     	end
         @project_status = ProjectStatus.find(project.status).description rescue nil
         @project_classification = ProjectClassification.find(project.classification).description rescue nil
@@ -12,7 +12,7 @@ wb.add_worksheet(name: "Infrastructures") do |sheet|
         project.project_components.each do |component|
         	@component_source_of_funds = ""
 	    	component.funds.each do |source|
-	    		@component_source_of_funds = @component_source_of_funds + source.source_name + "\n"
+	    		@component_source_of_funds = @component_source_of_funds + source.source_name + " - " + source.budget.to_s + "\n"
 	    	end
             @component_status = ProjectStatus.find(component.status).description rescue nil
             @component_classification = ProjectClassification.find(component.classification).description rescue nil
@@ -21,7 +21,7 @@ wb.add_worksheet(name: "Infrastructures") do |sheet|
         project.project_phases.each do |phase|
         	@phase_source_of_funds = ""
 	    	phase.funds.each do |source|
-	    		@phase_source_of_funds = @phase_source_of_funds + source.source_name + "\n"
+	    		@phase_source_of_funds = @phase_source_of_funds + source.source_name + " - " + source.budget.to_s + "\n"
 	    	end
             @phase_status = ProjectStatus.find(phase.status).description rescue nil
             @phase_classification = ProjectClassification.find(phase.classification).description rescue nil
