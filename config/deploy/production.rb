@@ -51,12 +51,13 @@ set :stage, :production
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
-server 'ec2-52-74-232-161.ap-southeast-1.compute.amazonaws.com',
-  user: 'ubuntu',
+server '202.52.166.50',
+  user: 'sysadmin',
   roles: %w{web app db},
+  port: 9922,
   ssh_options: {
-    user: 'ubuntu', # overrides user setting above
-    keys: %w(/home/donanobispacem/.ssh/dcaresv2.pem),
+    user: 'sysadmin', # overrides user setting above
+    keys: %w(/home/donanobispacem/.ssh/id_rsa_up_alpha),
     forward_agent: false,
     auth_methods: %w(publickey password)
     # password: 'please use keys'
