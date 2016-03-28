@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:DonaNobisPacem/dcaresv2.git'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.3'
-
+set :rbenv_custom_path, '/home/sysadmin/.rbenv/'
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
