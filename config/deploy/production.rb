@@ -53,8 +53,8 @@ set :stage, :production
 # ------------------------------------
 server '202.52.166.50',
   user: 'sysadmin',
-  roles: %w{web app db},
   port: 9922,
+  roles: %w{web app db},
   ssh_options: {
     user: 'sysadmin', # overrides user setting above
     keys: %w(/home/donanobispacem/.ssh/id_rsa_up_alpha),
