@@ -4,6 +4,9 @@ lock '3.4.0'
 set :application, 'dcaresv2'
 set :repo_url, 'git@github.com:DonaNobisPacem/dcaresv2.git'
 
+set :rbenv_type, :user
+set :rbenv_ruby, '2.2.3'
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
