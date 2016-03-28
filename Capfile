@@ -8,7 +8,7 @@ require 'capistrano/rbenv'
 require 'whenever/capistrano'
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.2.2'
+set :rbenv_ruby, '2.2.3'
 
 # Include tasks from other gems included in your Gemfile
 #
