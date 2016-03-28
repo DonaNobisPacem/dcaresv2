@@ -9,6 +9,7 @@ require 'whenever/capistrano'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.2.3'
+set :rbenv_path, '/home/sysadmin/.rbenv/'
 
 # Include tasks from other gems included in your Gemfile
 #
