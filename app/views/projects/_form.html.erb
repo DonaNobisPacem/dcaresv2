@@ -12,7 +12,7 @@
   				<%= f.input :status, :collection => ProjectStatus.all, :label_method => :description, :include_blank => false, :label => "Project Status" %>
   			</div>
   			<div class="col-xs-6">
-  				<%= f.input :classification, :collection => ProjectClassification.all, :label_method => :description, :include_blank => true, :label => "Project Classification" %>
+  				<%= f.input :classification, :collection => ProjectClassification.all, :label_method => :description, :include_blank => false, :label => "Project Classification" %>
   			</div>
 
   			<div class="col-xs-4">

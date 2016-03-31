@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
 	validates :project_code, presence: true, uniqueness: true
 	validates :financial_budget, presence: true, numericality: { :greater_than => 0 }
 	validates :university_id, presence: true
+	validates :status, presence: true
+	validates :classification, presence: true
 
 	has_many :project_images, :dependent => :destroy
 	has_many :project_components, :dependent => :destroy
