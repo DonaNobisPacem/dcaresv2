@@ -23,6 +23,8 @@ class Project < ActiveRecord::Base
 	accepts_nested_attributes_for :funds, :reject_if => :all_blank, :allow_destroy => true
 
 	acts_as_xlsx
+	include PublicActivity::Model
+  	tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }
 
 	def variation_percentage
 		if financial_variation.present?

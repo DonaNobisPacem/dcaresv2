@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/report' => 'static_pages#report'
   get '/result' => 'static_pages#result'
   get '/analytics' => 'static_pages#analytics'
+  get '/recent_updates' => 'static_pages#recent_updates'
 
   devise_for :users
   resources :projects do

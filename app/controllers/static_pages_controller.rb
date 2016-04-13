@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+	before_action :authenticate_user!
+
 	def home
 		@q = Project.ransack(params[:q])
 		@projects = @q.result.paginate(:page => params[:page], :per_page => 10)
@@ -60,6 +62,10 @@ class StaticPagesController < ApplicationController
 			classification_count = @output.where( status: status.id ).joins(:fund_sources).group("fund_sources.fund_source_classification").order('fund_sources.fund_source_classification asc').count
 			@status_vs_src_vs_classification_count << {:name => status.description, :data => classification_count }
 		end
+	end
+
+	def recent_updates
+		@activities = PublicActivity::Activity.all.order('created_at DESC').limit(30)
 	end
 
 	def search_users

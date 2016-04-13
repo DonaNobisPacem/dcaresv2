@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :set_university_list
 	before_action :configure_permitted_parameters, if: :devise_controller?
+
+  include PublicActivity::StoreController 
   	
   	def set_university_list
   		@university_list = University.paginate(:page => params[:page], :per_page => 30)

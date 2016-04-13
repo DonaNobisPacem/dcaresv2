@@ -102,3 +102,5 @@ gem 'rocket_pants'
 
 # Database dumping
 gem 'seed_dump'
+
+gem 'public_activity'

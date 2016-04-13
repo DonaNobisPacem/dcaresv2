@@ -41,6 +41,7 @@
 				     		<%= link_to '<i class="fa fa-user-plus"></i> Admin Panel <i class="fa fa-caret-down"></i>'.html_safe, admin_panel_path, :id => 'admindrop', :'data-toggle' => 'dropdown', :class => 'dropdown-toggle' %>
 				     		<ul class="dropdown-menu">
 								<li> <%=link_to '<i class="fa fa-user-plus"></i> User Management'.html_safe, admin_panel_path %> </li>
+								<li> <%=link_to '<i class="fa fa-user-plus"></i> Recent Updates'.html_safe, recent_updates_path %> </li>
 								<li> <%=link_to '<i class="fa fa-university"></i> List of Universities'.html_safe, universities_path %> </li>
 								<li> <%=link_to '<i class="fa fa-tags"></i> List of Project Classifications'.html_safe, project_classifications_path %> </li>
 								<li> <%=link_to '<i class="fa fa-tags"></i> List of Project Statuses'.html_safe, project_statuses_path %> </li>
