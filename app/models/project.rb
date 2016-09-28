@@ -22,6 +22,8 @@ class Project < ActiveRecord::Base
 	accepts_nested_attributes_for :project_images, :project_components, :project_phases, :fund_sources
 	accepts_nested_attributes_for :funds, :reject_if => :all_blank, :allow_destroy => true
 
+	after_save :update_status
+
 	acts_as_xlsx
 	include PublicActivity::Model
   	tracked owner: Proc.new { |controller, model| controller.current_user ? controller.current_user : nil }
@@ -72,5 +74,11 @@ class Project < ActiveRecord::Base
 		def project_images_count_within_bounds
 	    	return if project_images.blank?
 	    	errors.add(:project_images, "The project has reached its image limit.") if project_images.size > 15
+		end
+
+		def update_status
+			if self.percent_accomplishment >= 100
+				self.update_column(:status, 1)
+			end
 		end
 end
