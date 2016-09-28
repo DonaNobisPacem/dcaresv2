@@ -23,7 +23,6 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address => ENV["smtp_host"],
-    :authentication => :login,
     :user_name => ENV["smtp_username"],
     :password => ENV["smtp_password"],
     :authentication => "plain",
