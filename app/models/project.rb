@@ -77,7 +77,7 @@ class Project < ActiveRecord::Base
 		end
 
 		def update_status
-			if self.percent_accomplishment >= 100
+			if self.percent_accomplishment.present? && self.percent_accomplishment >= 100
 				self.update_column(:status, 1)
 			end
 
