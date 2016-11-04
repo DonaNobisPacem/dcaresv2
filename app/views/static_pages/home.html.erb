@@ -1,41 +1,37 @@
-<% if user_signed_in? %>
-	<br>
-	<div class="row">
-		<div class="jumbotron">
-			<div class="row">
-				<div class="text-center">
-					<%= image_tag "upseal_home.png", :class => "img-responsive center-image" %>
-				</div>
-				<div class="text-justify">
-					Welcome to the Office of the Vice President for Development's Data Reporting and Collection System or OVPDCares for Infrastructure Projects. The system serves as a digital hub for infrastructure-related information across all constituent universities of the University of the Philippines.
-				</div>
+<br>
+<div class="row">
+	<div class="jumbotron">
+		<div class="row">
+			<div class="text-center">
+				<%= image_tag "upseal_home.png", :class => "img-responsive center-image" %>
+			</div>
+			<div class="text-justify">
+				Welcome to the Office of the Vice President for Development's Data Reporting and Collection System or OVPDCares for Infrastructure Projects. The system serves as a digital hub for infrastructure-related information across all constituent universities of the University of the Philippines.
 			</div>
 		</div>
 	</div>
-	<div class="row row-eq-height">
-		<div class="well well-dynamic col-xs-6">
-			<%= render 'shared/university_selector' %>
-			<div class="text-justify">
-				Navigate through the system and select which CU's infrastructure projects you wish to view. Viewing your home CU allows you to add and edit infrastructure project-related information.
-			</div>
-		</div>
-		<div class="well well-dynamic col-xs-6">
-			<%= link_to "Generate reports", report_path, :class => "btn btn-success col-xs-12" %>
-			<div class="row">
-			</div>
-			<div class="text-justify">
-				Generate a list of infrastructure projects according to their Project Status, Time of Completion, and Assigned CU.
-			</div>
+</div>
+<div class="row row-eq-height">
+	<div class="well well-dynamic col-xs-6">
+		<%= render 'shared/university_selector' %>
+		<div class="text-justify">
+			Navigate through the system and select which CU's infrastructure projects you wish to view. Viewing your home CU allows you to add and edit infrastructure project-related information.
 		</div>
 	</div>
-	<div class="row">
-		<div class="well">
-			<div class="text-justify">
-				Quickly look for related infrastructure projects by sorting through their Project Title, Project Status, Assigned CU, and Source of Funds, among others.
-			</div>
-			<%= render 'shared/search' %>
+	<div class="well well-dynamic col-xs-6">
+		<%= link_to "Generate reports", report_path, :class => "btn btn-success col-xs-12" %>
+		<div class="row">
+		</div>
+		<div class="text-justify">
+			Generate a list of infrastructure projects according to their Project Status, Time of Completion, and Assigned CU.
 		</div>
 	</div>
-<% else %>
-	<%= render 'signin' %>	
-<% end %>
+</div>
+<div class="row">
+	<div class="well">
+		<div class="text-justify">
+			Quickly look for related infrastructure projects by sorting through their Project Title, Project Status, Assigned CU, and Source of Funds, among others.
+		</div>
+		<%= render 'shared/search' %>
+	</div>
+</div>

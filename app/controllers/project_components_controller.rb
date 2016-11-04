@@ -1,6 +1,6 @@
 class ProjectComponentsController < ApplicationController
   before_action :set_project_component, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /project_components
   # GET /project_components.json
   def index

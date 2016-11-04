@@ -1,6 +1,6 @@
 class ProjectImagesController < ApplicationController
   before_action :set_project_image, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /project_images
   # GET /project_images.json
   def index
