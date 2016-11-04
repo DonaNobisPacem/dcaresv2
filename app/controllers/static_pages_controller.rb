@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-	#before_action :authenticate_user!
+	before_action :authenticate_user!, only: [:admin_panel]
 
 	def home
 		@q = Project.ransack(params[:q])

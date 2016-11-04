@@ -1,6 +1,6 @@
 class ProjectStatusesController < ApplicationController
   before_action :set_project_status, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   # GET /project_statuses
   # GET /project_statuses.json
   def index

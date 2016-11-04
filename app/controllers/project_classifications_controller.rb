@@ -1,6 +1,6 @@
 class ProjectClassificationsController < ApplicationController
   before_action :set_project_classification, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
   # GET /project_classifications
   # GET /project_classifications.json
   def index

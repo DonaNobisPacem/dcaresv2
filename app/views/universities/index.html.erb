@@ -18,8 +18,10 @@
         <td><%= university.university_name %></td>
         <td style="text-align: right;">
         <%= link_to 'Show', university %>
+        <% if user_signed_in? %>
         <% if current_user.admin %>
            | <%= link_to 'Edit', edit_university_path(university) %> | <%= link_to 'Destroy', university, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
         <% end %>
         </td>
       </tr>
